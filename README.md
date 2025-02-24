@@ -1,9 +1,9 @@
 # LexiQL (LQL): Query Chaos with SQL Precision, Naturally
 
-LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is your secret weapon for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
+LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
 
 ## Quick Start
-1. Snag `mega_prompt.txt` from this repo.  
+1. Grab `mega_prompt.txt` from this repo.  
 2. Feed it to an LLM (e.g., Grok via xAI API).  
 3. Try this: `CREATE CONTEXT [context: tunes] FROM "songs about myths"` then `SELECT title AS table`.  
 Boom—structured results from messy data.
@@ -22,7 +22,7 @@ Boom—structured results from messy data.
 - [Commands](docs/commands.md): Every command, explained with samples.  
 - [Examples](docs/examples.md): Haikus and trends—see it in action.
 
-Fork it, tweak it, break it—MIT license says go nuts. Got a wild idea? Share it—I’m all ears.
+Fork it, tweak it, break it-Got a wild idea? Share it.
 
 ---
-Questions? Hit me up on X or open an issue. Let’s tame some chaos!
+Questions? Hit me up on X or open an issue.
