@@ -1,6 +1,6 @@
 # Devil’s Advocate: Why Should I Care About LexiQL (LQL)?
 
-LexiQL (LQL) sounds clever, but let’s poke some holes—here’s the pushback you might expect, answered straight.
+LexiQL (LQL) sounds clever, but let’s poke some holes...
 
 ### "Why not just use natural language with LLMs?"
 Sure, LLMs are chatty, but ask "list Norse gods" twice—good luck getting the same list. LQL nails it: `SELECT name FROM [context: myths] WHERE origin = 'Norse'`—same gods, every time, no guessing.
