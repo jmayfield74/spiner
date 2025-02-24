@@ -12,7 +12,7 @@ Boom—structured results from messy data.
 - **Natural Language Power**: Say "list tech news," get a query—SQL meets human speak.  
 - **Say It, Build It**: Spin up systems from words—"make a myth-song mashup" turns into LQL, no sweat.  
 - **Live Web Edge**: Pulls fresh web data on the fly—no stale leftovers.  
-- **Flexible Outputs**: Tables, prose, haikus—your call, not the tool’s.  
+- **Flexible Outputs**: Tables, prose, haikus, bash scripts—your call, not the tool’s.  
 - **Consistency**: Same query, same result—bye-bye, LLM roulette.
 
 ## Dig In
