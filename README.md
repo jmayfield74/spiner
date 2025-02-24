@@ -4,7 +4,7 @@ LexiQL (LQL) is your secret weapon for taming unstructured data—think myths, s
 
 ## Quick Start
 1. Snag `mega_prompt.txt` from this repo.  
-2. Feed it to an LLM (e.g., Grok via xAI API).  
+2. Feed it to an LLM (e.g., Grok via xAI API—shameless plug).  
 3. Try this: `CREATE CONTEXT [context: tunes] FROM "songs about myths"` then `SELECT title AS table`.  
 Boom—structured results from messy data.
 
@@ -16,6 +16,8 @@ Boom—structured results from messy data.
 
 ## Dig In
 - `mega_prompt.txt`: The guts—your LQL engine.  
+- `docs/summary.md`: What LQL is, the problem, and how it wins.  
+- `docs/devils_advocate.md`: Tackles pushback—smart Q&A for skeptics.  
 - `docs/commands.md`: Every command, explained with samples.  
 - `docs/examples.md`: Haikus and trends—see it in action.
 
