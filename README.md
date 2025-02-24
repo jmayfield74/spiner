@@ -1,6 +1,6 @@
 # LexiQL (LQL): Query Chaos with SQL Precision, Naturally
 
-LexiQL (LQL) is your secret weapon for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
+LexiQL (LQL/lek-see-kwul) is your secret weapon for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
 
 ## Quick Start
 1. Snag `mega_prompt.txt` from this repo.  
