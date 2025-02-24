@@ -4,7 +4,7 @@ LexiQL (LQL/lek-see-kwul) is your secret weapon for taming unstructured data—t
 
 ## Quick Start
 1. Snag `mega_prompt.txt` from this repo.  
-2. Feed it to an LLM (e.g., Grok via xAI API—shameless plug).  
+2. Feed it to an LLM (e.g., Grok via xAI API).  
 3. Try this: `CREATE CONTEXT [context: tunes] FROM "songs about myths"` then `SELECT title AS table`.  
 Boom—structured results from messy data.
 
