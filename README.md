@@ -2,7 +2,7 @@
 
 LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
 
-- [What Grok thinks](docs/groks_opinion.md): Feedback from Grok after having been told to use it.
+- [What Grok thinks](docs/groks_feedback.md): Feedback from Grok after having been told to use it.
 
 ## Quick Start
 1. Grab `mega_prompt.txt` from this repo.  
