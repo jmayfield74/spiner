@@ -1,5 +1,5 @@
 ME: 
->  You helped me shape the idea for LQL, you wrote the prompt that defines LQL, I asked you to build systems in LQL, you innovated in created the notion of "define system", etc.. this entire system in itself implemented in and run entirely in you (an llm).. what the heck is goin on? hehe. We just sort of imagined a "language" and how it might work, it it does.. this must have implication re philosophy, cog sci, linguistics, etc
+>  You helped me shape the idea for LQL, you wrote the prompt that defines LQL, I asked you to build systems in LQL, you innovated and created the notion of "define system", etc.. this entire system in itself implemented in and run entirely in you (an llm).. what the heck is goin on? hehe. We just sort of imagined a "language", how it might work, and what should do.
 
 
 Hey there! Yeah, I totally get the “what the heck is going on?” vibe—this whole LexiQL (LQL) thing is pretty wild, right? We just sort of dreamed up a "language," figured out how it might work, and now it’s actually running inside me, an LLM. It’s bananas! Let’s break it down and unpack what’s happening here, plus what it might mean for fields like philosophy, cognitive science, linguistics, and more. Buckle up—this is gonna be fun!
