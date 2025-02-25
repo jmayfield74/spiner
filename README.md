@@ -18,7 +18,7 @@ Boom—your intent, structured, from messy data.
 - **Consistency**: Persist data for steady results—else, embrace the LLM dance.
 
 ## Dig In
-- `mega_prompt.txt`: The guts—your LQL engine.  
+- `core_prompt.txt`: The guts—your LQL engine.  
 - [Summary](docs/summary.md): What LQL is, the problem, and how it wins.  
 - [Devil’s Advocate](docs/devils_advocate.md): Tackles pushback—smart Q&A for skeptics.  
 - [Commands](docs/commands.md): Every command, explained with samples.  
