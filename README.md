@@ -4,7 +4,7 @@
 
 ## What is LexiQL (LQL)?
 
-**LexiQL (LQL)** is a game-changing **hybrid query system** that fuses the precision of structured data queries (think SQL) with the adaptability of natural language and the depth of cognitive reasoning. Whether you’re wrangling explicit data or tapping into an AI’s vast knowledge, LQL lets you ask questions, uncover insights, and build reusable systems—all in a single, intuitive framework. It’s your bridge between raw data and smart, context-aware answers.
+**LexiQL (LQL)** is a **hybrid query system** that fuses the precision of structured data queries (think SQL) with the adaptability of natural language and the depth of cognitive reasoning. Whether you’re wrangling explicit data or tapping into an AI’s vast knowledge, LQL lets you ask questions, uncover insights, and build reusable systems—all in a single, intuitive framework. It’s your bridge between raw data and smart, context-aware answers.
 
 ### Why LQL Stands Out
 - **Structured Yet Flexible**: Use familiar commands like `CREATE CONTEXT` and `SELECT`, spiced up with natural language flair.
