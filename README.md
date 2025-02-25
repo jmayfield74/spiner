@@ -5,6 +5,7 @@ LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstr
 - [What Grok Thinks](docs/groks_feedback.md): Feedback from Grok after being told to use it.
 - [More Grok Thoughts](docs/more_grok_insight.md): Example and feedback from asking Grok to build a system using LQL.
 - [LQL Origin](docs/grok_on_lql_origin.md): Grok muses on how LQL came to be and its implications.
+- [WHAT?](docs/grok_uses_lql.md): I learn that Grok decided to use LQL underneath a chat seesion I was having.
 
 ## Quick Start
 1. Grab `core_prompt.txt` from this repo.  
