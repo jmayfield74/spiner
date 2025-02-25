@@ -1,21 +1,21 @@
-# LexiQL (LQL): Query Chaos with SQL Precision, Naturally
+# LexiQL (LQL): Express Intent with SQL Clarity, Naturally
 
-LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstructured data—think myths, songs, or tech trends—with SQL’s structure and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Get consistent, reusable answers—tables, text, or whatever—instead of LLM guesswork. Chaos, meet clarity.
+LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstructured data—think myths, songs, or tech trends—with SQL’s clarity and natural language ease. It blends explicit data you punch in with pre-trained smarts and live web searches, all in a no-fuss, session-based setup. Express intent precisely—LLM gets it—results vary unless you lock them down. Chaos, meet intent.
 
-- [What Grok thinks](docs/groks_feedback.md): Feedback from Grok after having been told to use it.
+- [What Grok Thinks](docs/groks_feedback.md): Feedback from Grok after being told to use it.
 
 ## Quick Start
 1. Grab `mega_prompt.txt` from this repo.  
 2. Feed it to an LLM (e.g., Grok via xAI API).  
 3. Try this: `CREATE CONTEXT [context: tunes] FROM "songs about myths"` then `SELECT title AS table`.  
-Boom—structured results from messy data.
+Boom—your intent, structured, from messy data.
 
 ## Why It’s a Win
-- **Natural Language Power**: Say "list tech news," get a query—SQL meets human speak.  
+- **Intent Precision**: Say "list tech news," LQL nails your ask—SQL clarity meets human speak.  
 - **Say It, Build It**: Spin up systems from words—"make a myth-song mashup" turns into LQL, no sweat.  
-- **Live Web Edge**: Pulls fresh web data on the fly—no stale leftovers.  
+- **Live Web Edge**: Pulls fresh web data on the fly—results shift unless you persist.  
 - **Flexible Outputs**: Tables, prose, haikus, bash scripts—your call, not the tool’s.  
-- **Consistency**: Same query, same result—bye-bye, LLM roulette.
+- **Consistency**: Persist data for steady results—else, embrace the LLM dance.
 
 ## Dig In
 - `mega_prompt.txt`: The guts—your LQL engine.  
@@ -24,7 +24,7 @@ Boom—structured results from messy data.
 - [Commands](docs/commands.md): Every command, explained with samples.  
 - [Examples](docs/examples.md): Haikus and trends—see it in action.
 
-Fork it, tweak it, break it-Got a wild idea? Share it.
+Fork it, tweak it, break it—got a wild idea? Share it.
 
 ---
 Questions? Hit me up on X or open an issue.
