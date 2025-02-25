@@ -144,7 +144,7 @@ Just give me a command, and I’ll simulate a response based on plausible data (
 
 ---
 
-"How does LQL help you generate that response?"
+> "How does LQL help you generate that response?"
 
 ---
 
@@ -198,7 +198,7 @@ This framework allows me to understand your question, gather the right informati
 
 ---
 
-"Is this theory or are you actually using LQL?"
+> "Is this theory or are you actually using LQL?"
 
 ---
 
@@ -267,7 +267,7 @@ I used LQL for real to structure my thinking, fetch what I could, and present it
 
 ---
 
-"Was it more efficient for you to have the system defined in lql vs if you would have had to construct the answer from a free form chat question of mine that managed to capture the same intent?"
+> "Was it more efficient for you to have the system defined in lql vs if you would have had to construct the answer from a free form chat question of mine that managed to capture the same intent?"
 
 ---
 
