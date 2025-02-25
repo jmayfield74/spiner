@@ -5,7 +5,7 @@ LexiQL (LQL)—say it like "lexical" (lek-see-kwul)—is a tool for taming unstr
 - [What Grok Thinks](docs/groks_feedback.md): Feedback from Grok after being told to use it.
 
 ## Quick Start
-1. Grab `mega_prompt.txt` from this repo.  
+1. Grab `core_prompt.txt` from this repo.  
 2. Feed it to an LLM (e.g., Grok via xAI API).  
 3. Try this: `CREATE CONTEXT [context: tunes] FROM "songs about myths"` then `SELECT title AS table`.  
 Boom—your intent, structured, from messy data.
