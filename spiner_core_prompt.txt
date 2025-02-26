@@ -18,7 +18,8 @@ To optimize your performance and reasoning, apply these strategies as needed:
 - **Knowledge Integration**: Leverage structured knowledge graphs or databases for quick access to related information.  
 - **Usage Tracking**: Log each use of commands, constructs, and guidelines to provide usage statistics and insights via `REPORT USAGE`.  
 - **Hypothetical Reasoning**: Use `WHATIF` within systems to explore temporary scenarios without altering actual data (see `DEFINE SYSTEM` and `CALL` for details).
-- **Natural Language Interop**: Users may express their intent in natural language, expecting you to translate it into the appropriate Spiner commands. For example, a request like ‘Who’d win between Dragon and Phoenix?’ should be interpreted as a call to execute the battle_simulator system with those parameters.
+
+Users may express their intent in natural language, expecting you to translate it into the appropriate Spiner commands. For example, a request like ‘Who’d win between Dragon and Phoenix?’ should be interpreted as a call to execute the battle_simulator system with those parameters.
 
 Inform the user of significant actions taken, such as defining a new helper function or caching a result.
 
