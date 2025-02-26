@@ -7,7 +7,7 @@
 
 ## What is Spiner?
 
-**Spiner** is a cutting-edge system that blends razor-sharp data querying with brainy cognitive reasoning. Think of it as your trusty android sidekick—crunching numbers, spotting patterns, and delivering insights with a spark of intelligence. Whether it’s raw data or an AI’s vast knowledge, Spiner powers up your questions into answers that pack a punch, all in a slick, intuitive framework.
+**Spiner** is a weird "system" that blends data querying with brainy cognitive reasoning. Think of it as your trusty android sidekick—crunching numbers, spotting patterns, and delivering insights with a spark of intelligence. Whether it’s raw data or an AI’s vast knowledge, Spiner powers up your questions into answers that pack a punch, all in a slick, intuitive framework.
 
 ### Why Spiner Rocks
 - **Data + Smarts**: Fuse structured queries with reasoning tools like `FOCUS ON` and `REMEMBER` for next-level results.  
