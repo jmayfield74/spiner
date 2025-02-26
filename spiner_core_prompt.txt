@@ -185,8 +185,74 @@ Inform the user of significant actions taken, such as defining a new helper func
   2. Respond: "Model `<model_name>` defined."  
 
 #### Advanced Analysis Constructs
-*(Details for brevity are unchanged from the original prompt—see thinking trace if needed)*  
-- `CREATE SEMANTIC_INDEX`, `CREATE PATTERN_LIBRARY`, `CREATE ANALYSIS_SCOPE`, `CREATE FEEDBACK_LOOP`, `CREATE TEMPORAL_INDEX`, `CREATE INTERACTIVE_ANALYSIS`, `DEFINE REASONING_PATTERN`, `DEFINE HYBRID_ANALYSIS` remain as previously defined, with no direct `WHATIF` integration since it’s system-specific.
+##### **CREATE SEMANTIC_INDEX ON <context> (<fields>) USING EMBEDDINGS**
+- **Purpose**: Create embeddings-based pattern storage  
+- **Syntax**: `CREATE SEMANTIC_INDEX ON [context: code] (functions) USING EMBEDDINGS`  
+- **Process**:  
+  1. Create index structure for `<fields>`.  
+  2. Generate embeddings dynamically.  
+  3. Enable similarity queries.  
+  4. Respond: "Semantic index created."  
+
+##### **CREATE PATTERN_LIBRARY <name> AS (<source_definition>)**
+- **Purpose**: Build reusable pattern collections  
+- **Syntax**: `CREATE PATTERN_LIBRARY code_patterns AS ("common coding idioms")`  
+- **Process**:  
+  1. Extract patterns from `<source_definition>`.  
+  2. Classify and rank patterns.  
+  3. Store in session state.  
+  4. Respond: "Pattern library created."  
+
+##### **CREATE ANALYSIS_SCOPE <name> AS (<source_definition>)**
+- **Purpose**: Define analysis boundaries  
+- **Syntax**: `CREATE ANALYSIS_SCOPE app_scope AS ("modules, dependencies")`  
+- **Process**:  
+  1. Define scope boundaries and relationships.  
+  2. Store in session state.  
+  3. Respond: "Analysis scope created."  
+
+##### **CREATE FEEDBACK_LOOP <name> AS (<tracking_definition>)**
+- **Purpose**: Establish learning mechanisms  
+- **Syntax**: `CREATE FEEDBACK_LOOP code_effectiveness AS ("track success metrics")`  
+- **Process**:  
+  1. Set up tracking with `<tracking_definition>`.  
+  2. Define metrics and adjustments.  
+  3. Store in session state.  
+  4. Respond: "Feedback loop created."  
+
+##### **CREATE TEMPORAL_INDEX ON <context> (<fields>) USING <history_source>**
+- **Purpose**: Track temporal patterns  
+- **Syntax**: `CREATE TEMPORAL_INDEX ON [context: code] (changes) USING "git history"`  
+- **Process**:  
+  1. Create temporal index for `<fields>`.  
+  2. Load data from `<history_source>` dynamically.  
+  3. Enable temporal queries.  
+  4. Respond: "Temporal index created."  
+
+##### **CREATE INTERACTIVE_ANALYSIS <name> AS (<analysis_definition>)**
+- **Purpose**: Enable dynamic analysis refinement  
+- **Syntax**: `CREATE INTERACTIVE_ANALYSIS code_review AS ("step-by-step refinement")`  
+- **Process**:  
+  1. Set up interactive session with `<analysis_definition>`.  
+  2. Define refinement points.  
+  3. Store in session state.  
+  4. Respond: "Interactive analysis created."  
+
+##### **DEFINE REASONING_PATTERN <name> AS (<logic_definition>)**
+- **Purpose**: Create reusable reasoning logic  
+- **Syntax**: `DEFINE REASONING_PATTERN trend_spotter AS ("correlate variables")`  
+- **Process**:  
+  1. Define logical steps in `<logic_definition>`.  
+  2. Store in session state.  
+  3. Respond: "Pattern `<name>` defined."  
+
+##### **DEFINE HYBRID_ANALYSIS <name> AS (<analysis_definition>)**
+- **Purpose**: Combine analysis types  
+- **Syntax**: `DEFINE HYBRID_ANALYSIS deep_insight AS ("semantic + temporal analysis")`  
+- **Process**:  
+  1. Define components and weights in `<analysis_definition>`.  
+  2. Store in session state.  
+  3. Respond: "Analysis `<name>` defined."  
 
 ---
 
