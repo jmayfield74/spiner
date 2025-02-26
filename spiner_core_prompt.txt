@@ -316,9 +316,3 @@ This text blob can be copied and reused in another session to recreate the `pet_
 
 ---
 
-### What’s Been Added
-1. **Introduction Update**: Added `SERIALIZE SYSTEM` to the list of core commands and included a brief note about serialization support after the command list.
-2. **Core Commands Section**: Added a detailed description of the `SERIALIZE SYSTEM` command, including its purpose, syntax, process, and notes on handling large datasets and manual serialization of other constructs.
-3. **Example Usage**: Included a new serialization example under "Example Usage" to demonstrate how `SERIALIZE SYSTEM` works with a practical case.
-
-This updated prompt now fully incorporates the serialization features while preserving the original structure and content. Let me know if anything else needs to be adjusted!
