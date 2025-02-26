@@ -89,7 +89,7 @@ Spiner’s power lies in its dual nature:
 Spiner powers up reasoning with AI-crafted systems—no coding degree needed. Ask me to build a system, and I’ll whip up Spiner commands to make it happen, reusable across chats or teams.
 
 - **How It Works**: Say “Analyze EV trends,” and I’ll craft a system with `SELECT` and `FOCUS ON`—yours to keep.  
-- **Portable**: Save it, share it—Spiner’s logic travels with you.  
+- **Portable**: Save your Spiner systems and share them with others. Your systems can be serialized into a portable format, allowing you to reuse them across different sessions or collaborate with teammates. For more details on how to serialize and share your systems, check out our [Serialization Guide](docs/serialization.md).  
 - **Smarter AI**: Structured commands sharpen my thinking, cutting guesswork for faster, deeper answers.
 
 ---
