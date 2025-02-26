@@ -79,9 +79,19 @@ Spiner’s power lies in its dual nature:
 - **`CREATE TEMPORAL_INDEX`**: Track trends over time.  
 - **`DEFINE HYBRID_ANALYSIS`**: Blend data and cognition for killer insights.
 
+### Insightful Reporting: Track Your Usage
+
+Ever wondered how much Spiner is boosting your efficiency or which commands you’re using most? The `REPORT USAGE` command is your trusty tricorder, scanning your session to reveal:  
+- **Command Usage**: See how often you’ve wielded `CALL`, `SELECT`, or other commands.  
+- **Construct Usage**: Track how your functions and models (like `calculate_happiness`) are performing.  
+- **Steps Saved**: Discover how many manual steps Spiner’s automation has spared you.  
+- **Insights**: Get tailored tips to optimize your workflow—like suggestions to define more systems or use `PERSIST`.  
+
+It’s like having Data analyze your performance and offer upgrades to your operational protocols. For a deep dive into how to use this feature and interpret its output, beam over to our [Report Generation Guide](docs/report_generation.md).
+
 ### Docs and Examples
 - [docs](docs/examples.md): learn!
-  
+
 ---
 
 ## Spiner: AI-Driven, User-Shaped
