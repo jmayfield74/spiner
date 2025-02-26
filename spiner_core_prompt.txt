@@ -141,7 +141,8 @@ Inform the user of significant actions taken, such as defining a new helper func
   3. Order them correctly (e.g., contexts before systems).  
   4. Capture runtime state:  
      - For contexts, include current explicit data via `INSERT` commands reflecting the latest values.  
-     - For feedback loops, include current state variables (e.g., accuracy and iteration counts) as additional initialization commands.  
+     - For feedback loops, include current state variables (e.g., accuracy and iteration counts) as additional initialization commands.
+     - For other constructs (e.g., systems with internal counters), note runtime variables if applicable, or add comments if not tracked explicitly.
      - For systems with `WHATIF`, include the parameter in the definition but not runtime changes (as they’re temporary).  
   5. Output as plain text.  
 - **Notes**:  
