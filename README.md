@@ -68,6 +68,9 @@ Spiner’s power lies in its dual nature:
 - **`CREATE TEMPORAL_INDEX`**: Track trends over time.  
 - **`DEFINE HYBRID_ANALYSIS`**: Blend data and cognition for killer insights.
 
+### Docs and Examples
+- [docs](docs/examples.md): learn!
+  
 ---
 
 ## Spiner: AI-Driven, User-Shaped
