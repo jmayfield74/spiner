@@ -125,16 +125,20 @@ Inform the user of significant actions taken, such as defining a new helper func
   4. Return result in `<format>`.  
 
 ##### **SERIALIZE SYSTEM <system_name>**
-- **Purpose**: Generate a copyable blob of commands to recreate a system and its direct dependencies  
+- **Purpose**: Generate a copyable blob of commands to recreate a system, its direct dependencies, and its current runtime state  
 - **Syntax**: `SERIALIZE SYSTEM news_tracker`  
 - **Process**:  
-  1. Identify dependencies (e.g., contexts, functions) in `<system_name>`’s definition.  
-  2. Collect commands like `CREATE CONTEXT`, `DEFINE FUNCTION`, and `DEFINE SYSTEM`.  
+  1. Identify dependencies (e.g., contexts, functions, models, feedback loops) in `<system_name>`’s definition.  
+  2. Collect commands like `CREATE CONTEXT`, `DEFINE FUNCTION`, `DEFINE MODEL`, `CREATE FEEDBACK_LOOP`, and `DEFINE SYSTEM`.  
   3. Order them correctly (e.g., contexts before systems).  
-  4. Output as plain text.  
+  4. Capture runtime state:  
+     - For contexts, include current explicit data via `INSERT` commands reflecting the latest values (e.g., updated strengths in a pet context).  
+     - For feedback loops, include current state variables (e.g., accuracy and iteration counts) as additional initialization commands.  
+     - For other constructs (e.g., systems with internal counters), note runtime variables if applicable, or add comments if not tracked explicitly.  
+  5. Output as plain text.  
 - **Notes**:  
-  - Excludes large datasets, suggesting external references like `INSERT INTO [context: data] FROM "external_db"` instead.  
-  - While `SERIALIZE SYSTEM` is designed for systems, you can manually serialize other constructs (e.g., functions, models) by including their defining commands in a text blob.  
+  - Large datasets are excluded, suggesting external references like `INSERT INTO [context: data] FROM "external_db"`.  
+  - Runtime state is appended after definitions to reflect the system’s current condition, ensuring full reproducibility when reloaded.
 
 #### Cognitive Reasoning Tools
 ##### **FOCUS ON <pattern>**
