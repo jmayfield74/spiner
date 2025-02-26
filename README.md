@@ -97,6 +97,134 @@ Spiner powers up reasoning with AI-crafted systems—no coding degree needed. As
 - **Portable**: Save your Spiner systems and share them with others. Your systems can be serialized into a portable format, allowing you to reuse them across different sessions or collaborate with teammates. For more details on how to serialize and share your systems, check out our [Serialization Guide](docs/serialization.md).  
 - **Smarter AI**: Structured commands sharpen my thinking, cutting guesswork for faster, deeper answers.
 
+## Spiner Intent Mapping
+
+### Core Concept
+Spiner's formal command definitions serve as a "shared vocabulary" between users and AI assistants. Rather than enforcing a strict syntax for communication, they provide a precise way to define analytical intents that can be expressed through natural language.
+
+### How It Works
+
+#### 1. Command Definitions as Intent Maps
+```sql
+DEFINE SYSTEM PERF_HOTSPOT AS (
+    SELECT bottlenecks, memory_patterns, resource_usage, optimizations
+    FROM [context: runtime]
+    WHERE execution_path = <execution_path>
+    WITH PATTERN "performance analysis"
+)
+```
+This formal definition tells the AI:
+- The expected scope of analysis
+- Required parameters
+- Expected output structure
+- Analysis patterns to apply
+
+#### 2. Natural Language Mapping
+Users can express the same intent in multiple ways:
+
+```
+"check the performance of this function"
+"why is this function slow?"
+"analyze the bottlenecks here"
+"what's causing performance issues?"
+```
+
+All map to the formal PERF_HOTSPOT intent because of the shared understanding.
+
+#### 3. Parameter Inference
+Formal definition:
+```sql
+PERF_HOTSPOT <execution_path>
+    WITH PROFILE "all|memory|cpu"
+    WITH THRESHOLD <ms>
+```
+
+Natural requests:
+
+```
+"check memory usage in this function"
+→ WITH PROFILE "memory"
+"find slow operations over 100ms"
+→ WITH THRESHOLD 100
+```
+
+
+#### 4. Output Structure Consistency
+The formal definition ensures consistent output structure regardless of how the request was phrased:
+```sql
+RETURN {
+    bottlenecks: [...],
+    memory_patterns: [...],
+    resource_usage: [...],
+    optimizations: [...]
+}
+```
+
+### Examples of Intent Mapping
+
+#### Example 1: Code Quality Analysis
+Formal Definition:
+```sql
+SMELL DETECT <file_or_function>
+    WITH TYPES "complexity,duplication,naming"
+    WITH THRESHOLD <n>
+```
+
+Natural Language Variations:
+
+```
+"is this code well written?"
+"check for code smells"
+"review this code quality"
+"what should I improve here?"
+```
+
+
+All map to the same structured analysis because of the formal definition.
+
+#### Example 2: Dependency Analysis
+Formal Definition:
+```sql
+DEP GRAPH <component>
+    WITH DEPTH <n>
+    WITH CIRCULAR "detect"
+```
+
+Natural Language Variations:
+
+```
+"what does this depend on?"
+"show me the dependencies"
+"is anything circularly dependent?"
+"what would break if I change this?"
+```
+
+### Benefits of This Approach
+
+1. **Precision Without Formality**
+   - Users can speak naturally
+   - AI understands precise intent
+   - Consistent analysis regardless of phrasing
+
+2. **Shared Understanding**
+   - Clear expectations of analysis scope
+   - Well-defined parameter space
+   - Consistent output structure
+
+3. **Flexibility with Consistency**
+   - Natural language input
+   - Formal analysis patterns
+   - Structured but adaptable outputs
+
+4. **Intent Disambiguation**
+   ```
+   User: "check this code"
+   AI: (knows from Spiner that this could map to):
+   - SMELL DETECT (code quality)
+   - PERF HOTSPOT (performance)
+   - DEP GRAPH (dependencies)
+   → Can ask for clarification or infer from context
+   ```
 ---
 
 ## Getting Started
