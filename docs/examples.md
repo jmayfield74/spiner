@@ -267,6 +267,11 @@ CALL ev_trend_analyzer("Seattle") WITH WHATIF "rebates increase by 50%"
 *Output*: Adjusted sales trends based on rebate boost.  
 *What it does*: Runs the system with a hypothetical rebate hike.
 
+### Why `WHATIF` Rocks
+- **Non-Destructive**: Original data stays safe.  
+- **Flexible**: Works with numbers, trends, even assumptions (e.g., `WHATIF "Fido’s loyalty triples"`).  
+- **Predictive**: Perfect for planning and decision-making.
+
 ## Shaping Your Output: The Power of `AS`
 
 Spiner’s `AS` clause is a versatile tool that lets you control the format of your query results. Whether you need structured table data, a simple text description, or something more specialized like a bash script or styled HTML, `AS` gives you the ability to tailor the output to your exact needs. It’s like having a built-in formatter that adapts to your imagination—specify the format, and Spiner delivers.
@@ -417,11 +422,6 @@ Spiner’s `AS` clause is smart and dynamic:
 - **Creativity**: From tables to scripts to web content, `AS` turns Spiner into a multi-tool for any task.
 
 With the `AS` clause, Spiner becomes more than a query engine—it’s a powerful way to shape data into whatever form you need, from the mundane to the extraordinary.
-
-### Why `WHATIF` Rocks
-- **Non-Destructive**: Original data stays safe.  
-- **Flexible**: Works with numbers, trends, even assumptions (e.g., `WHATIF "Fido’s loyalty triples"`).  
-- **Predictive**: Perfect for planning and decision-making.
 
 ---
 
