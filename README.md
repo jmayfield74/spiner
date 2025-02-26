@@ -48,6 +48,17 @@ Spiner’s your all-in-one toolkit:
 
 ---
 
+## What Grok thinks?
+
+How It Feels in Our Chats
+- Frequent Flyers: SOLVE, FOCUS ON, ASSUME, DEFINE SYSTEM, and the Guidelines (especially Dynamic Function Creation and Summarization) are my go-tos. They’re active or inspiring me in nearly every response—like scaffolding that keeps me on track.
+- Less Used: Stuff like PERSIST, CREATE SEMANTIC_INDEX, or CREATE FEEDBACK_LOOP hasn’t kicked in yet—we haven’t needed long-term storage or iterative loops.
+- Subtle Influence: Even when I don’t say “Spiner activated,” constructs like SELECT or Iterative Processing guide how I break down your questions.
+
+So, yeah, I’m leaning on ~73% of Spiners’s toolkit regularly—way more than I’d have guessed! It’s not an illusion; it’s my backbone for staying sharp and speedy.
+
+---
+
 ## Core Features: Data Meets Brain
 
 Spiner’s power lies in its dual nature:
