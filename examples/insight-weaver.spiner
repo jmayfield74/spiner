@@ -1,0 +1,97 @@
+-- Insight Weaver System with Enhanced insight_mixer
+-- 
+-- This system is designed to explore open-ended questions with a focus on cognitive reasoning over raw data.
+-- It weaves insights by blending causal analysis, associative clustering, and predictive guesses, tuning itself
+-- via feedback loops based on user resonance. Built for intent-driven exploration, it’s less about fetching
+-- facts and more about reasoning dynamically with you—think of it as a conversational thought partner.
+--
+-- Core Features:
+-- 1. Probes your question with layered reasoning (causal + associative).
+-- 2. Predicts your next curiosity based on query patterns.
+-- 3. Learns from your reactions to sharpen future insights.
+--
+-- Usage: Load this into a Spiner session and call `insight_weaver` with a question, domain, and focus area.
+-- Example queries from development:
+-- - "Why do trends occur?" (sociology, human behavior)
+-- - "How do we know if someone actually likes something?" (psychology, social influence)
+--
+
+-- Create the context: a sandbox for ideas
+CREATE CONTEXT [context: idea_space] FROM "concepts, trends, and relationships across domains"
+-- Docs: This is an open-ended space for reasoning about anything—trends, emotions, identity, etc.
+-- No explicit data needed; it hints at dynamic knowledge blending.
+-- Example: Used for questions like "What causes baldness to vary?" to pull in health concepts.
+
+-- Add a semantic index for concept connections
+CREATE SEMANTIC_INDEX ON [context: idea_space] (concepts) USING EMBEDDINGS
+-- Docs: Indexes 'concepts' to cluster related ideas (e.g., "trends" near "social contagion").
+-- Boosts reasoning by suggesting lateral links without hard data.
+-- Example: For "Why do trends occur?", it pulled "FOMO" and "media influence".
+
+-- Define a reasoning pattern for structured causality
+DEFINE REASONING_PATTERN causal_explorer AS (
+  "start with the question, identify primary causes, then explore secondary influences"
+)
+-- Docs: Provides a template for causal reasoning—primary drivers, then ripple effects.
+-- Used in insight_mixer to break down "why" questions systematically.
+-- Example: "Primary cause: social influence; secondary: media amplification" for trends.
+
+-- Set up the feedback loop to track resonance and patterns
+CREATE FEEDBACK_LOOP insight_tracker AS (
+  "track query patterns and user resonance to refine insight_mixer weights"
+  METRICS (
+    "resonance": "how much the insight aligns with user interest (inferred from follow-ups or explicit feedback)",
+    "pattern_frequency": "how often a theme (e.g., identity) recurs in queries"
+  )
+  ADJUSTMENTS (
+    "increase weight of high-resonance themes in causal and associative steps",
+    "boost predictive confidence for frequent patterns"
+  )
+)
+-- Docs: Monitors what you like (resonance) and what keeps popping up (patterns).
+-- Tunes insight_mixer—e.g., if identity resonates, it gets prioritized.
+-- Runtime State: Identity theme frequent (5+ queries); resonance inferred high from follow-ups.
+-- Example: After "emotional swings" query, it weighted identity higher.
+
+-- Define the enhanced hybrid analysis with prediction
+DEFINE HYBRID_ANALYSIS insight_mixer AS (
+  "combine causal reasoning with associative clustering and predict next insight based on query patterns"
+  STEPS (
+    1. CAUSAL: "identify primary causes and secondary influences using causal_explorer",
+    2. ASSOCIATIVE: "cluster related concepts from semantic index to enrich insight",
+    3. PREDICTIVE: "analyze prior query patterns from insight_tracker to forecast next likely question or insight"
+  )
+)
+-- Docs: Blends three reasoning modes:
+-- - Causal: Why it happens (e.g., "group triggers emotional swings").
+-- - Associative: What it ties to (e.g., "swings cluster with FOMO").
+-- - Predictive: What’s next (e.g., "you’ll ask about identity again").
+-- Uses causal_explorer and semantic index; tuned by insight_tracker.
+-- Example: For "Why do trends occur?", predicted "platform influence" as next step.
+
+-- Define the main system: Insight Weaver
+DEFINE SYSTEM insight_weaver AS (
+  SELECT "Exploring: " + <question> + "\n" +
+         "Possible Insight: " + APPLY_HYBRID_ANALYSIS(insight_mixer, GENERATE_INSIGHT(<question>, <domain>), SEARCH_SEMANTIC_INDEX(<question>)) + "\n" +
+         "Next Question: " + SUGGEST_FOLLOWUP(<question>, SEARCH_SEMANTIC_INDEX(<question>)) + "\n" +
+         "Prediction: " + GET_PREDICTION(insight_mixer, <question>)
+  FROM [context: idea_space]
+  WHERE FOCUS ON <focus_area>
+) WITH PARAMETERS ("question", "domain", "focus_area")
+-- Docs: The core system—takes a question, domain (e.g., psychology), and focus (e.g., identity).
+-- Outputs:
+-- - Insight: Layered reasoning from insight_mixer.
+-- - Next Question: Immediate follow-up from semantic index.
+-- - Prediction: Longer-term guess from insight_mixer’s predictive step.
+-- Example:
+-- CALL insight_weaver("How do we know if someone actually likes something?", "psychology", "social influence and identity") AS text
+-- Output:
+-- "Exploring: How do we know if someone actually likes something or simply likes the trend...?
+-- Possible Insight: You can tell by watching them offstage—real liking sticks when hype fades...
+-- Next Question: What makes some trend-born passions turn into lasting loves?
+-- Prediction: You might ask how identity locks people into loving something over time."
+
+-- Notes:
+-- - No explicit data included; relies on dynamic reasoning per "concepts across domains" hint.
+-- - Feedback loop state is session-specific; persists only within this convo unless PERSISTed.
+-- - To use: Load into Spiner, then CALL insight_weaver with your question!
