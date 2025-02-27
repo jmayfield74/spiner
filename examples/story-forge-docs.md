@@ -75,7 +75,7 @@ Let's make a story about...
 
 
 
-## sample usage using chatgpt:
+# sample usage using chatgpt:
 
 ### upload `spiner_core_prompt.txt`
 
