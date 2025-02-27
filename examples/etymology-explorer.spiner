@@ -1,0 +1,108 @@
+# Spiner Serialized System: etymology_explorer
+# Generated: 2025-02-26 by Grok 3 (Spiner) with user collaboration
+# Session: collab_space_20250226T0200
+
+## System Definition
+DEFINE SYSTEM etymology_explorer AS (
+  "trace a word’s etymological roots, classify connection types, and analyze metaphor classes and fundamental notions"
+  FROM [context: etymology_web]
+  WHERE word = <input_word>
+  STEPS (
+    1. "lookup root origins and intermediate forms across languages—e.g., PIE to Modern English",
+    2. "classify connections: metaphor (symbolic shift, note class—e.g., physical-to-process), compound (word fusion), borrowing (language transfer)",
+    3. "store findings in session state with metadata—metaphor class, root notion—for cross-word analysis",
+    4. APPLY_ADAPTIVE_MODEL(etymo_reasoner, "reason about connections and correlate with prior words"),
+    5. "identify patterns—e.g., metaphor classes across words, high-yield root notions by word count"
+  )
+  OUTPUT (
+    "root_trace": "timeline of word forms and connection types",
+    "insights": "metaphor class usage and foundational notion yield—e.g., 'physical-to-process in utility words'"
+  )
+) WITH PARAMETERS ("input_word")
+-- Docs: Traces roots (e.g., 'filter' from '*pel-'), tags connections, hunts insights on metaphor classes and root yields.
+
+## Dependencies
+-- Context
+CREATE CONTEXT [context: etymology_web] FROM "word roots, derivations, connection types, and insight correlations across languages"
+-- Docs: Holds word data and state—persistent across calls.
+
+-- Intent Mapping
+CREATE INTENT_MAP etymology_intent AS (
+  "analyze user input to lock focus on etymology exploration"
+  PATTERNS (
+    "intent": "explore_concept",
+    "focus": "metaphor_classes_and_fundamental_notions",
+    "depth": "detailed",
+    "tone": "clear_focused"
+  )
+  UPDATE_WITH_FEEDBACK ("refine via explicit nudges—e.g., 'more metaphors'")
+)
+-- Docs: Locks tone to clear, focus to metaphor patterns—tuned from "drop the snark."
+
+-- Adaptive Reasoning
+DEFINE ADAPTIVE_MODEL etymo_reasoner AS (
+  "blend reasoning modes to tailor etymology insights"
+  MODES (
+    "causal": "explore why connections form—e.g., why metaphor?",
+    "associative": "cluster related concepts—e.g., 'beat' with 'felt'",
+    "predictive": "guess next exploration—e.g., elemental roots"
+  )
+  TUNING (
+    "weight by resonance—e.g., metaphor focus upped after 'hope'",
+    "shift by domain—e.g., utility words favor borrowing"
+  )
+)
+-- Docs: Flexes—e.g., 50% associative for "water" clusters.
+
+-- Evolutionary Tuning
+DEFINE EVOLUTIONARY_SYSTEM etymo_evolver AS (
+  "self-modify etymology_explorer based on insight depth and user feedback"
+  BASE_SYSTEM (etymology_explorer),
+  EVOLUTION (
+    "metric: insight depth—e.g., cross-word pattern strength",
+    "WHATIF: add steps like cross-language root frequency",
+    "apply if deeper—e.g., Germanic cousins added for 'filter'"
+  )
+)
+-- Docs: Added Germanic ties (e.g., 'filzan') for depth.
+
+-- Narrative Wrapper
+CREATE NARRATIVE_ENGINE etymo_narrator AS (
+  "generate a clear, structured narrative around etymology_explorer outputs"
+  ELEMENTS (
+    "arc": "logical progression—origin, evolution, insight",
+    "tone": "clear_structured",
+    "integration": "tie root_trace and insights into a cohesive explanation"
+  )
+)
+-- Docs: Clear wrap—e.g., "The path of 'water' flows from '*wed-'..."
+
+## Runtime State: [context: etymology_web]
+INSERT INTO [context: etymology_web] (word, root_trace, connections, metadata) VALUES
+  ("hope", 
+   "Modern English 'hope' → Old English 'hopian' (wish) → Proto-Germanic '*hōpōną*' → PIE '*keh₂p-' (grasp)", 
+   "metaphor (physical-to-mental), borrowing (minimal)", 
+   "metaphor_class: physical-to-mental, root_notion: '*keh₂p-'"),
+  ("filter", 
+   "Modern English 'filter' → Middle English 'filtre' → Old French 'filtre' → Medieval Latin 'filtrum' → Frankish '*felt*' → Proto-Germanic '*feltaz*' → PIE '*pel-' (beat)", 
+   "compound ('*feltaz*'), metaphor (physical-to-process), borrowing (French-Latin-Germanic)", 
+   "metaphor_class: physical-to-process, root_notion: '*pel-'"),
+  ("water", 
+   "Modern English 'water' → Old English 'wæter' → Proto-Germanic '*watōr*' → PIE '*wed-' (wet, flow)", 
+   "compound ('*watōr*'), no metaphor, borrowing (minimal)", 
+   "metaphor_class: none, root_notion: '*wed-'")
+
+-- Stored Insights
+REMEMBER IN [context: etymology_web] (
+  "Metaphor class 'physical-to-mental/process' recurs in 'hope' and 'filter'—common for emotional/utility words.",
+  "Fundamental notion '*pel-' (beat) yields metaphor stacking—e.g., 'filter', possibly 'pelt'.",
+  "Fundamental notion '*wed-' (wet) favors compounds—e.g., 'water', 'wet', 'wash'—less metaphor."
+)
+
+## Usage Notes
+-- Last Executed: Explored "hope," "filter," "water" in collab_space_20250226T0200.
+-- Feedback Applied: "Drop the snark" → tone shifted to clear_focused; "focus on metaphor classes" → insights tuned.
+-- Patterns: Physical action roots (e.g., '*pel-') lean metaphor-heavy; elemental roots (e.g., '*wed-') compound-driven.
+-- Next Steps: Add words (e.g., 'fire') to deepen patterns—CALL etymology_explorer("<word>") AS text.
+
+# End Serialization
