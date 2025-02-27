@@ -4,6 +4,8 @@ Spiner also supports advanced features like:
 - **Serialization**: Save and share systems with `SERIALIZE SYSTEM`.
 - **Usage Reporting**: Monitor command and guideline usage with `REPORT USAGE`, quantifying cognitive efficiency.
 
+**Spiner tracks and reports usage statistics**, allowing you to monitor command, construct, and guideline usage, and quantify the cognitive boost it provides through the `REPORT USAGE` command.
+
 ### Spiner: A Collaborative Framework for AI-Human System Modeling
 
 **Spiner (S.P.I.N.E.R.)** is a unique system designed to enable humans and AI to collaboratively model complex systems, with a focus on aligning AI behavior with human intent. It’s built as much—perhaps more—for AI as it is for humans, serving as a bridge between human creativity and AI precision.
