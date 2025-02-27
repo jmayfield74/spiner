@@ -68,12 +68,6 @@ Spiner’s your all-in-one toolkit:
 
 ---
 
-## What Grok thinks?
-
-- [Read a "review"](docs/grok_reviews_spiner.md)
-
----
-
 ## Core Features: Data Meets Brain
 
 Spiner’s power lies in its dual nature:
@@ -105,6 +99,7 @@ Ever wondered how much Spiner is boosting your efficiency or which commands you�
 It’s like having Data analyze your performance and offer upgrades to your operational protocols. For a deep dive into how to use this feature and interpret its output, beam over to our [Report Generation Guide](docs/report_generation.md).
 
 ### Docs and Examples
+- [build systems](docs/interactive_system_building.md): Talk to AI, make reusable "apps"
 - [docs](docs/examples.md): learn!
 
 ---
