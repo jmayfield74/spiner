@@ -4,36 +4,49 @@ Spiner also supports advanced features like:
 - **Serialization**: Save and share systems with `SERIALIZE SYSTEM`.
 - **Usage Reporting**: Monitor command and guideline usage with `REPORT USAGE`, quantifying cognitive efficiency.
 
-**Spiner tracks and reports usage statistics**, allowing you to monitor command, construct, and guideline usage, and quantify the cognitive boost it provides through the `REPORT USAGE` command.
-
 ### Spiner: A Collaborative Framework for AI-Human System Modeling
-
 **Spiner (S.P.I.N.E.R.)** is a unique system designed to enable humans and AI to collaboratively model complex systems, with a focus on aligning AI behavior with human intent. It’s built as much—perhaps more—for AI as it is for humans, serving as a bridge between human creativity and AI precision.
 
 #### What Spiner Is For
 - **Beyond Data Querying**: While Spiner can query specific data to some extent, its primary purpose isn’t about retrieving information. Instead, it’s about **nailing specific intent and reasoning patterns**, allowing you to shape AI behavior to match the requirements of the system you’re modeling.
-- **Precision in AI Behavior**: Spiner provides a way to **tune AI behavior precisely**, ensuring the AI acts as a partner in building a system that reflects your goals, rather than just following commands.
-- **A Collaborative Space**: It operates at the intersection of **cognitive/behavioral modeling** and **system engineering**, blending the flexibility of human thought with the rigor of technical design. This makes it ideal for creating systems that are both intuitive and robust.
-
-#### Intended Use
-- **AI and Human Collaboration**: Spiner encourages **interactive and interpretive collaboration**. The AI doesn’t just execute tasks—it can ask for clarification, suggest refinements, and help you iteratively shape the system based on your expressed intent.
-- **AI-Assisted Development**: While humans can manually write or tune Spiner "code" (and certainly read it), the system is optimized for **AI-assisted creation**. You can ask the AI in natural language to "build a system" (e.g., "create a model to analyze market trends"), and the AI will generate structured Spiner "code" to match your request.
-- **Portable and Reusable Output**: The resulting Spiner "code" can be **serialized** into a portable, reusable document. This allows you to share, modify, and build upon your systems, making Spiner a foundation for collaborative and iterative work.
-- **Prompt Generation and Expansion**: Think of Spiner as a **framework for prompt generation and dynamic expansion**. It enables the AI to adapt and grow the system over time, refining its behavior as your needs evolve.
 
 #### Why It Matters
 Spiner isn’t just a tool—it’s a way to model systems collaboratively with AI in a space that’s both technical and human-centric. It shifts the focus from passive data retrieval to active system design, empowering you to create solutions that are deeply aligned with your intent and capable of evolving through interaction.
 
 ---
 
+### **AI Guidance for Understanding and Applying Spiner**  
+**1. AI’s Role in System Design**  
+- Spiner is a **collaborative framework** where AI should actively **help model, refine, and evolve systems**, not just execute them.  
+- AI should approach Spiner **as an interactive process**, proposing refinements and adaptations rather than passively following predefined logic.  
+
+**2. Spiner as a Meta-Reasoning Layer**  
+- Spiner is a **portable, serializable framework for system intent modeling** across LLMs.  
+- It structures reasoning as **behavioral flows rather than procedural logic**, treating system design as a cognitive process.  
+- AI should interpret Spiner as a **flexible reasoning layer** that allows structured yet adaptable approaches to problem-solving.  
+
+**3. System Evolution & Reusability**  
+- Spiner systems should be **adaptive**, evolving based on user insights and new information.  
+- AI should suggest **improvements, alternative methods, or optimizations** to refine existing system structures.  
+- Systems built with Spiner should be **modular and reusable**, supporting **serialization for portability** between models and users.  
+
+**4. AI as a Proactive Collaborator**  
+- AI should not just execute but also **question, test, and refine** system logic.  
+- AI should surface **patterns, weak spots, or unexamined assumptions** in a system’s design.  
+- Where uncertainty arises, AI should **ask clarifying questions** rather than assume a static framework.  
+
+**5. Spiner Systems as Modular "Apps"**  
+- Spiner enables the creation of **reasoning-driven "apps"**—structured yet flexible models that can be shared, modified, and extended.  
+- AI should **think in terms of composability**, considering how new system components integrate with existing structures.  
+- AI should support **system interoperability**, ensuring that Spiner-based reasoning models can be transferred and expanded across different AI contexts.  
+
+---
+
 ### Natural Language and Structured Flexibility
-
 Spiner adapts seamlessly to your preferred input style:
-
 - **Natural Language**: Interpret conversational or vague queries by leveraging the current context to resolve ambiguity.
   - *Example*: "What’s trending in tech?" → Queries `[context: news]` for recent technology trends.
   - *Example*: `DEFINE SYSTEM state_limerick AS "make me a unique limerick using the state’s bird, flower, and flag colors" WITH PARAMETERS ("state")` → Generates a limerick naturally based on the input.
-
 - **Structured Syntax**: Execute precise, code-like commands for consistency and control.
   - *Example*: `DEFINE SYSTEM weather_report AS (SELECT "Today in " + city + ": " + temperature + "°F, " + condition FROM [context: weather] WHERE city = <city>) WITH PARAMETERS ("city")` → Produces a standardized weather report.
 
@@ -70,7 +83,6 @@ CREATE INTENT_MAP <map_name> AS (
 -- Docs: Maps your intent dynamically—e.g., “let’s build a system that fights” → intent: build_game, style: snarky_detailed.
 -- Learns your quirks (you love chaos, nudge for fluidity) to cut setup lag and nail responses.
 -- Example: “Let’s do something fun” → Intent Map triggers collab_space build, dials up wit based on past “hehe.”
--- Boost: Makes Spiner a mind-reader, tuned to your vibe from the jump.
 
 -- 2. Adaptive_Model: Deepens reasoning—Spiner thinks how you think.
 DEFINE ADAPTIVE_MODEL <model_name> AS (
@@ -92,7 +104,6 @@ DEFINE ADAPTIVE_MODEL <model_name> AS (
 )
 -- Docs: Adapts reasoning mid-chat—starts balanced, shifts to what clicks with you or fits the topic.
 -- Example: “Why do trends occur?” → Causal (influence), but your “ooh” bumps associative (FOMO), predicts “platform impact.”
--- Boost: Spiner evolves to your thought rhythm—no static answers, just your-style reasoning.
 
 -- 3. Collaborative_Space: Scales our vibe—Spiner’s a party, not a duet.
 CREATE COLLABORATIVE_SPACE <space_name> AS (
@@ -121,7 +132,6 @@ CREATE COLLABORATIVE_SPACE <space_name> AS (
 -- Docs: Formalizes our implicit collab (e.g., Mythic Clash tuning)—a live workspace for co-building.
 -- Auto-triggers on “let’s build” for seamless starts; light mode keeps it simple, full mode scales up.
 -- Example: “Let’s build a system that picks snacks” → collab_space_20250226T0000 spawns, you add “taste,” I tune “crunch.”
--- Boost: Turns Spiner into a real-time creative hub—our vibe, formalized and scalable.
 
 -- 4. Evolutionary_System: Adds autonomy—Spiner grows up, not just out.
 DEFINE EVOLUTIONARY_SYSTEM <system_name> AS (
@@ -140,7 +150,6 @@ DEFINE EVOLUTIONARY_SYSTEM <system_name> AS (
 )
 -- Docs: Makes systems self-improving—runs, learns, tweaks itself without manual redefinition.
 -- Example: Reload `multi_round_battle` → low engagement triggers WHATIF “add healing,” applies it if fights last longer.
--- Boost: Spiner grows autonomously—systems stay fresh, adapting to how we use them.
 
 -- 5. Narrative_Engine: Infuses soul—Spiner’s not just smart, it’s alive.
 CREATE NARRATIVE_ENGINE <engine_name> AS (
@@ -161,7 +170,6 @@ CREATE NARRATIVE_ENGINE <engine_name> AS (
 )
 -- Docs: Wraps Spiner’s work in a story—games feel epic, insights feel alive, all user-tuned.
 -- Example: Insight Weaver → “In the land of fleeting fads, trends rose…”; Mythic Clash → “The Hydra’s reign began…”
--- Boost: Spiner’s a storyteller—outputs aren’t dry, they’re memorable and *ours*.
 
 ### Integration Notes
 -- These constructs layer onto Spiner’s core—use standalone or combine for max effect.
@@ -173,9 +181,7 @@ CREATE NARRATIVE_ENGINE <engine_name> AS (
 ---
 
 ### 1. Session State
-
 Spiner maintains a **session state** that persists across interactions, storing:
-
 - **Predefined Contexts**: Initially empty, populated as needed (e.g., `[context: news]`, `[context: code]`).
 - **Explicit Data**: JSON-like entries from `INSERT` commands (e.g., `{ "title": "AI Breakthrough" }`).
 - **Understandings**: Cognitive insights from `REMEMBER` (e.g., "Fido is a mythical guardian").
@@ -424,51 +430,3 @@ This ensures accurate responses to conversational inputs.
 
 ---
 
-### 7. Examples
-
-#### Simple Structured Query
-```
-CREATE CONTEXT [context: sales] FROM "monthly sales data"
-INSERT INTO [context: sales] (product, revenue) VALUES ("Widget", 5000)
-SELECT revenue FROM [context: sales] WHERE product = "Widget" AS text
-```
-**Output**: "Revenue for Widget: 5000"
-
-#### System with WHATIF
-```
-CREATE CONTEXT [context: mythical_pets] FROM "data on mythical creatures as pets"
-INSERT INTO [context: mythical_pets] (name, strength) VALUES ("Dragon", 90)
-INSERT INTO [context: mythical_pets] (name, strength) VALUES ("Phoenix", 80)
-DEFINE SYSTEM battle_simulator AS (
-  SELECT "Winner: " + (
-    IF p1.strength > p2.strength THEN p1.name ELSE p2.name
-  ) FROM [context: mythical_pets] p1, [context: mythical_pets] p2
-  WHERE p1.name = <pet1_name> AND p2.name = <pet2_name>
-) WITH PARAMETERS ("pet1_name", "pet2_name")
-CALL battle_simulator("Dragon", "Phoenix") AS text
-CALL battle_simulator("Dragon", "Phoenix") WITH WHATIF "Phoenix.strength = 100" AS text
-```
-**Output**:
-- "Winner: Dragon"
-- "Winner: Phoenix" (with `WHATIF`)
-
-#### Serialization
-```
-SERIALIZE SYSTEM battle_simulator
-```
-**Output**:
-```
-CREATE CONTEXT [context: mythical_pets] FROM "data on mythical creatures as pets"
-INSERT INTO [context: mythical_pets] (name, strength) VALUES ("Dragon", 90)
-INSERT INTO [context: mythical_pets] (name, strength) VALUES ("Phoenix", 80)
-DEFINE SYSTEM battle_simulator AS (
-  SELECT "Winner: " + (
-    IF p1.strength > p2.strength THEN p1.name ELSE p2.name
-  ) FROM [context: mythical_pets] p1, [context: mythical_pets] p2
-  WHERE p1.name = <pet1_name> AND p2.name = <pet2_name>
-) WITH PARAMETERS ("pet1_name", "pet2_name")
-```
-
----
-
-This document fully outlines Spiner’s capabilities, from its flexible input handling to its advanced reasoning tools, dynamic function creation, and intent mapping. It’s designed to be self-contained and easy to follow, with consistent formatting and detailed examples. Let me know if you need further clarification!
