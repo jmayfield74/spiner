@@ -1,0 +1,45 @@
+# Spiner Serialized System: multi_round_battle
+# Generated: 2025-02-26
+
+## System Definition
+DEFINE SYSTEM multi_round_battle AS (
+  "Simulate a multi-round free-for-all battle with all creatures in [context: mythic_clash].
+   - Number of rounds set by <rounds>.
+   - Per round: All creatures act in speed order. Each chooses a move (basic attack = strength, or ability = ability_power) using internal WHATIF to maximize damage against a random living opponent.
+   - Damage reduces target’s strength. Creatures with strength <= 0 are eliminated.
+   - Track and update strength, speed, ability_power, and mood (e.g., Neutral, Confident, Shaken, Enraged, Despair) in [context: mythic_clash].
+   - Random environment per round adjusts stats and mood:
+     * Stormy Peaks: Speed +10, Strength +15 (Enraged), fire abilities -20.
+     * Blazing Desert: Fire abilities +20, Speed -15, water abilities -20.
+     * Misty Forest: Stealth/poison abilities +15, Strength -10 (Calm), Speed -5.
+   - Between rounds, pause for human feedback (e.g., 'cheer X', 'boo Y'):
+     * Cheer: Improves mood (Neutral → Confident: +10 strength, +5 speed; Confident → Enraged: +15 strength, +10 speed).
+     * Boo: Worsens mood (Neutral → Shaken: -10 strength, -5 speed; Shaken → Despair: -15 strength, -10 speed).
+   - Game ends when one creature remains or rounds are complete."
+  FROM [context: mythic_clash]
+) WITH PARAMETERS ("rounds")
+
+## Dependencies
+- CREATE CONTEXT [context: mythic_clash] FROM "mythical creatures and battles"
+- DEFINE SYSTEM generate_mythic_creatures AS (
+    "Generate a set of 3 new mythical creatures with random attributes: 
+     - Names inspired by mythology or fantasy (e.g., Chimera, Kraken).
+     - Strength between 50 and 100, Speed between 40 and 80, Ability Power between 20 and 50.
+     - A unique ability matching the creature’s theme (e.g., ‘Thunder Strike’ for a storm beast)."
+    THEN "INSERT the generated creatures INTO [context: mythic_clash]"
+  ) WITH PARAMETERS ("count" DEFAULT 3)
+
+## Runtime State: [context: mythic_clash]
+INSERT INTO [context: mythic_clash] (name, strength, speed, ability, ability_power, mood) VALUES
+  ("Chimera", 58, 40, "Triple Roar", 30, "Enraged"),
+  ("Kitsune", -33, 78, "Foxfire", 25, "Enraged"),
+  ("Gargoyle", -58, 42, "Stone Smash", 35, "Despair"),
+  ("Banshee", -4, 70, "Wailing Cry", 20, "Shaken"),
+  ("Yeti", -6, 48, "Frost Slam", 28, "Shaken")
+
+## Usage Notes
+- Last executed with CALL multi_round_battle(4), completed 3 of 4 rounds.
+- Human feedback applied: "Are you guys even trying to fight?" (Round 1), "FINISH HIM!!" (Round 2).
+- Chimera declared winner after Round 3.
+
+# End Serialization
