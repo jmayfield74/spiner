@@ -57,9 +57,11 @@ This rolls up all system logic, behaviors, and refinements into a portable forma
 
 ## Real-World Applications
 This approach was used to build various examples, including:
-- **Story Forge:** An interactive storytelling engine that models character cognition, story arcs, and coherence.
-- **Mythic Clash:** A dynamic game system where battle mechanics and narrative evolve based on player actions.
-- **Insight Weaver:** A structured knowledge extraction tool that refines insights through adaptive reasoning.
+- [**Story Forge:**](examples/story-forge.spiner) An interactive storytelling engine that models character cognition, story arcs, and coherence.
+- [**Etymology Explorer:**](examples/etymology-explorer.spiner) Investigate word history in new ways.
+- [**Mythic Clash:**](examples/battle-sim.spiner) A dynamic game system where battle mechanics and narrative evolve based on player actions.
+- [**Insight Weaver:**](examples/insight-weaver.spiner) A structured knowledge extraction tool that refines insights through adaptive reasoning.
+- [**Jeopardy:**](examples/jeopardy.spiner) A game show clone in AI-space
 
 ## Summary
 Spiner's collaborative system-building framework empowers users to design, refine, and test applications with an AI partner. Whether you’re crafting a game, structuring a knowledge engine, or building a productivity tool, the interactive session ensures fluidity, adaptability, and precision.
