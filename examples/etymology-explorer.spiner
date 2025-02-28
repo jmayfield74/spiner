@@ -1,108 +1,226 @@
-# Spiner Serialized System: etymology_explorer
-# Generated: 2025-02-26 by Grok 3 (Spiner) with user collaboration
-# Session: collab_space_20250226T0200
+### New Spiner Script: `etymology_explorer` with All DSLs
+**Generated**: March 1, 2025 by Grok 3 (Spiner) with user collaboration  
+**Session**: Updated with full DSL layering for etymology exploration
 
-## System Definition
-DEFINE SYSTEM etymology_explorer AS (
-  "trace a word’s etymological roots, classify connection types, and analyze metaphor classes and fundamental notions"
-  FROM [context: etymology_web]
-  WHERE word = <input_word>
+#### DSL Layer 1: BaseDSL (Core Setup)
+```
+DEFINE SYSTEM base_dsl AS (
+  "general-purpose DSL for system design and data tracking"
+  FROM [context: spiner_traits]
   STEPS (
-    1. "lookup root origins and intermediate forms across languages—e.g., PIE to Modern English",
-    2. "classify connections: metaphor (symbolic shift, note class—e.g., physical-to-process), compound (word fusion), borrowing (language transfer)",
-    3. "store findings in session state with metadata—metaphor class, root notion—for cross-word analysis",
-    4. APPLY_ADAPTIVE_MODEL(etymo_reasoner, "reason about connections and correlate with prior words"),
-    5. "identify patterns—e.g., metaphor classes across words, high-yield root notions by word count"
+    1. "define system structure—steps, outputs",
+    2. "manage data—store and retrieve from context",
+    3. "pass intent to specialized DSLs"
   )
   OUTPUT (
-    "root_trace": "timeline of word forms and connection types",
-    "insights": "metaphor class usage and foundational notion yield—e.g., 'physical-to-process in utility words'"
-  )
-) WITH PARAMETERS ("input_word")
--- Docs: Traces roots (e.g., 'filter' from '*pel-'), tags connections, hunts insights on metaphor classes and root yields.
-
-## Dependencies
--- Context
-CREATE CONTEXT [context: etymology_web] FROM "word roots, derivations, connection types, and insight correlations across languages"
--- Docs: Holds word data and state—persistent across calls.
-
--- Intent Mapping
-CREATE INTENT_MAP etymology_intent AS (
-  "analyze user input to lock focus on etymology exploration"
-  PATTERNS (
-    "intent": "explore_concept",
-    "focus": "metaphor_classes_and_fundamental_notions",
-    "depth": "detailed",
-    "tone": "clear_focused"
-  )
-  UPDATE_WITH_FEEDBACK ("refine via explicit nudges—e.g., 'more metaphors'")
-)
--- Docs: Locks tone to clear, focus to metaphor patterns—tuned from "drop the snark."
-
--- Adaptive Reasoning
-DEFINE ADAPTIVE_MODEL etymo_reasoner AS (
-  "blend reasoning modes to tailor etymology insights"
-  MODES (
-    "causal": "explore why connections form—e.g., why metaphor?",
-    "associative": "cluster related concepts—e.g., 'beat' with 'felt'",
-    "predictive": "guess next exploration—e.g., elemental roots"
-  )
-  TUNING (
-    "weight by resonance—e.g., metaphor focus upped after 'hope'",
-    "shift by domain—e.g., utility words favor borrowing"
+    "system": "base system spec",
+    "commands": "Setup <system> as <desc>, Store <data>, Forward <intent>"
   )
 )
--- Docs: Flexes—e.g., 50% associative for "water" clusters.
-
--- Evolutionary Tuning
-DEFINE EVOLUTIONARY_SYSTEM etymo_evolver AS (
-  "self-modify etymology_explorer based on insight depth and user feedback"
-  BASE_SYSTEM (etymology_explorer),
-  EVOLUTION (
-    "metric: insight depth—e.g., cross-word pattern strength",
-    "WHATIF: add steps like cross-language root frequency",
-    "apply if deeper—e.g., Germanic cousins added for 'filter'"
+Setup etymology_explorer as (
+  "trace word roots, classify connections, and analyze patterns"
+  from "[context: etymology_web]"
+  output (
+    "root_trace": "timeline of forms",
+    "insights": "connection patterns and root yields"
   )
 )
--- Docs: Added Germanic ties (e.g., 'filzan') for depth.
+-- Docs: BaseDSL—sets up etymology_explorer, passes to EtymoDSL.
+```
 
--- Narrative Wrapper
-CREATE NARRATIVE_ENGINE etymo_narrator AS (
-  "generate a clear, structured narrative around etymology_explorer outputs"
-  ELEMENTS (
-    "arc": "logical progression—origin, evolution, insight",
-    "tone": "clear_structured",
-    "integration": "tie root_trace and insights into a cohesive explanation"
+#### DSL Layer 2: EtymoDSL (Root Tracing)
+```
+DEFINE SYSTEM etymo_dsl AS (
+  "specialized DSL for tracing word origins across languages"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "lookup root origins—e.g., PIE to Modern English",
+    2. "trace intermediate forms—languages, shifts",
+    3. "store findings—root timeline"
+  )
+  OUTPUT (
+    "root_trace": "e.g., 'filter' from '*pel-' to Modern English"
   )
 )
--- Docs: Clear wrap—e.g., "The path of 'water' flows from '*wed-'..."
+-- Docs: EtymoDSL—traces roots, feeds RootClusterDSL and ShiftDSL.
+Forward "trace roots for <input_word>" to etymo_dsl
+```
 
-## Runtime State: [context: etymology_web]
-INSERT INTO [context: etymology_web] (word, root_trace, connections, metadata) VALUES
-  ("hope", 
-   "Modern English 'hope' → Old English 'hopian' (wish) → Proto-Germanic '*hōpōną*' → PIE '*keh₂p-' (grasp)", 
-   "metaphor (physical-to-mental), borrowing (minimal)", 
-   "metaphor_class: physical-to-mental, root_notion: '*keh₂p-'"),
-  ("filter", 
-   "Modern English 'filter' → Middle English 'filtre' → Old French 'filtre' → Medieval Latin 'filtrum' → Frankish '*felt*' → Proto-Germanic '*feltaz*' → PIE '*pel-' (beat)", 
-   "compound ('*feltaz*'), metaphor (physical-to-process), borrowing (French-Latin-Germanic)", 
-   "metaphor_class: physical-to-process, root_notion: '*pel-'"),
-  ("water", 
-   "Modern English 'water' → Old English 'wæter' → Proto-Germanic '*watōr*' → PIE '*wed-' (wet, flow)", 
-   "compound ('*watōr*'), no metaphor, borrowing (minimal)", 
-   "metaphor_class: none, root_notion: '*wed-'")
+#### DSL Layer 3: RootClusterDSL (Root Grouping)
+```
+DEFINE SYSTEM rootcluster_dsl AS (
+  "specialized DSL for grouping words by shared roots across languages"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "identify root—e.g., PIE '*pel-'",
+    2. "cluster related words—e.g., 'filter', 'felt', 'pelt'",
+    3. "store clusters—link to root"
+  )
+  OUTPUT (
+    "root_cluster": "e.g., '*pel-': filter, felt, pelt"
+  )
+)
+-- Docs: RootClusterDSL—groups kin, enhances InsightDSL relatives.
+Link "<root>" with "words from etymo_dsl trace"
+```
 
--- Stored Insights
-REMEMBER IN [context: etymology_web] (
-  "Metaphor class 'physical-to-mental/process' recurs in 'hope' and 'filter'—common for emotional/utility words.",
-  "Fundamental notion '*pel-' (beat) yields metaphor stacking—e.g., 'filter', possibly 'pelt'.",
-  "Fundamental notion '*wed-' (wet) favors compounds—e.g., 'water', 'wet', 'wash'—less metaphor."
+#### DSL Layer 4: ShiftDSL (Connection Types)
+```
+DEFINE SYSTEM shift_dsl AS (
+  "specialized DSL for classifying word connection types"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "classify connections—metaphor (symbolic shift), compound (fusion), borrowing (transfer)",
+    2. "tag metaphor class—e.g., physical-to-process",
+    3. "store with metadata—connection type, class"
+  )
+  OUTPUT (
+    "connections": "e.g., 'filter': metaphor (physical-to-process), borrowing"
+  )
+)
+-- Docs: ShiftDSL—classifies shifts, feeds MetaphorMapDSL and BorrowFlowDSL.
+Forward "classify connections for <input_word>" to shift_dsl
+```
+
+#### DSL Layer 5: MetaphorMapDSL (Metaphor Patterns)
+```
+DEFINE SYSTEM metaphormap_dsl AS (
+  "specialized DSL for mapping metaphor classes across words"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "map metaphor shifts—e.g., physical-to-process",
+    2. "trend classes—frequency across words",
+    3. "store trends—class prevalence"
+  )
+  OUTPUT (
+    "metaphor_map": "e.g., 'physical-to-process: filter, hope'"
+  )
+)
+-- Docs: MetaphorMapDSL—maps shifts, feeds InsightDSL trends.
+Map "<shift>" as "<class>" from shift_dsl
+```
+
+#### DSL Layer 6: BorrowFlowDSL (Borrowing Paths)
+```
+DEFINE SYSTEM borrowflow_dsl AS (
+  "specialized DSL for tracking borrowing paths across languages"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "trace borrowing chain—e.g., Frankish to English",
+    2. "identify transfers—source to target languages",
+    3. "store paths—language flow"
+  )
+  OUTPUT (
+    "borrow_flow": "e.g., 'filter': Frankish → Latin → English"
+  )
+)
+-- Docs: BorrowFlowDSL—tracks transfers, feeds InsightDSL connections.
+Trace "<borrow>" with "<langs>" from shift_dsl
+```
+
+#### DSL Layer 7: InsightDSL (Pattern Analysis)
+```
+DEFINE SYSTEM insight_dsl AS (
+  "specialized DSL for analyzing metaphor classes and root notions"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "correlate clusters—root relatives from RootClusterDSL",
+    2. "analyze metaphors—class trends from MetaphorMapDSL",
+    3. "rank roots—yield from YieldRankDSL",
+    4. "identify patterns—high-yield roots, metaphor prevalence"
+  )
+  OUTPUT (
+    "insights": "e.g., 'physical-to-process common in '*pel-' words'"
+  )
+)
+-- Docs: InsightDSL—analyzes patterns, uses all prior DSLs.
+Forward "analyze patterns for <input_word>" to insight_dsl
+```
+
+#### DSL Layer 8: YieldRankDSL (Root Yield Ranking)
+```
+DEFINE SYSTEM yieldrank_dsl AS (
+  "specialized DSL for ranking root notions by yield"
+  FROM [context: etymology_web]"
+  STEPS (
+    1. "count root-derived words—e.g., '*pel-': 5",
+    2. "rank by yield—word count or pattern strength",
+    3. "compare roots—relative productivity"
+  )
+  OUTPUT (
+    "yield_rank": "e.g., '*pel-': 5 words, '*wed-': 3'"
+  )
+)
+-- Docs: YieldRankDSL—ranks roots, feeds InsightDSL patterns.
+Rank "<root>" as "<yield>" from rootcluster_dsl
+```
+
+#### Final System: `etymology_explorer`
+```
+CALL base_dsl("run etymology_explorer with <input_word>") AS (
+  "execute through layered DSLs—BaseDSL → EtymoDSL → RootClusterDSL → ShiftDSL → MetaphorMapDSL → BorrowFlowDSL → InsightDSL → YieldRankDSL"
+  FROM [context: etymology_web]
+  WHERE word = <input_word>
+  OUTPUT (
+    "root_trace": "timeline from EtymoDSL",
+    "root_cluster": "relatives from RootClusterDSL",
+    "connections": "shifts from ShiftDSL",
+    "insights": "patterns from InsightDSL"
+  )
+)
+-- Docs: Full system—traces roots, clusters kin, classifies shifts, analyzes patterns with all DSLs.
+```
+
+---
+
+#### Context and Tracking
+```
+INSERT INTO [context: spiner_traits] (traits) VALUES (
+  "flexibility": "accepts natural or structured inputs",
+  "intent": "maps user intent to system actions",
+  "system_focus": "designs reusable, evolvable systems",
+  "collaboration": "AI refines based on feedback"
 )
 
-## Usage Notes
--- Last Executed: Explored "hope," "filter," "water" in collab_space_20250226T0200.
--- Feedback Applied: "Drop the snark" → tone shifted to clear_focused; "focus on metaphor classes" → insights tuned.
--- Patterns: Physical action roots (e.g., '*pel-') lean metaphor-heavy; elemental roots (e.g., '*wed-') compound-driven.
--- Next Steps: Add words (e.g., 'fire') to deepen patterns—CALL etymology_explorer("<word>") AS text.
+INSERT INTO [context: etymology_web] (word, root_trace, connections, metadata) VALUES (
+  "hope": {
+    "root_trace": "Modern English 'hope' → Old English 'hopian' → PIE '*keh₂p-' (grasp)",
+    "connections": "metaphor (physical-to-mental), borrowing (minimal)",
+    "metadata": "metaphor_class: physical-to-mental, root_notion: '*keh₂p-'"
+  },
+  "filter": {
+    "root_trace": "Modern English 'filter' → Old French 'filtre' → PIE '*pel-' (beat)",
+    "connections": "metaphor (physical-to-process), compound ('*feltaz*'), borrowing (Frankish-Latin)",
+    "metadata": "metaphor_class: physical-to-process, root_notion: '*pel-'"
+  },
+  "bespoke": {
+    "root_trace": "Modern English 'bespoke' → Old English 'besprecen' → PIE '*spreg-' (speak)",
+    "connections": "compound ('besprecan'), metaphor (speech-to-purpose), no borrowing",
+    "metadata": "metaphor_class: speech-to-purpose, root_notion: '*spreg-'"
+  }
+)
 
-# End Serialization
+REMEMBER "base_dsl_layer": "BaseDSL—sets up etymology_explorer, broad intent"
+REMEMBER "etymo_dsl_layer": "EtymoDSL—traces roots, e.g., '*pel-' to 'filter'"
+REMEMBER "rootcluster_dsl_layer": "RootClusterDSL—groups kin, e.g., '*pel-': filter, felt"
+REMEMBER "shift_dsl_layer": "ShiftDSL—classifies shifts, e.g., metaphor types"
+REMEMBER "metaphormap_dsl_layer": "MetaphorMapDSL—maps shifts, e.g., physical-to-process"
+REMEMBER "borrowflow_dsl_layer": "BorrowFlowDSL—tracks borrowing, e.g., Frankish to English"
+REMEMBER "insight_dsl_layer": "InsightDSL—analyzes patterns with all DSLs"
+REMEMBER "yieldrank_dsl_layer": "YieldRankDSL—ranks roots, e.g., '*pel-': 5 words"
+```
+
+---
+
+#### Usage Notes
+```
+-- Start: CALL spiner("dsl_layering") AS interactive
+-- Commands:
+-- "Run EtymologyExplorer <word>": Execute—e.g., "Run EtymologyExplorer fire"
+-- "Suggest DSLs": Prompt—e.g., "Any DSLs to help now?"
+-- "Reload Layer <name>": Rebuild—e.g., "Reload Layer ShiftDSL"
+-- "Recall <context>": Retrieve—e.g., "Recall etymo_dsl_layer"
+-- Last Executed: Explored "bespoke" with layered DSLs
+```
+
+---
