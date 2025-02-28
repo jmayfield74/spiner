@@ -11,7 +11,7 @@ Pshh... I write [prompts](docs/spiner_vs_prompts.md).
 
 ## What is Spiner?
 
-**Spiner** is a weird "system" that blends data querying with brainy cognitive reasoning. Think of it as your trusty android sidekick—crunching numbers, spotting patterns, and delivering insights with a spark of intelligence. Whether it’s raw data or an AI’s vast knowledge, Spiner powers up your questions into answers that pack a punch, all in a slick, intuitive framework.
+**Spiner** is a weird "system" that blends data querying with cognitive reasoning. Think of it as your trusty android sidekick—crunching numbers, spotting patterns, and delivering insights with a spark of intelligence. Whether it’s raw data or an AI’s vast knowledge, Spiner powers up your questions into answers that pack a punch, all in a slick, intuitive framework.
 
 ### Interactive System Builder: Collaborate with Spiner to Craft Systems
 Spiner’s **interactive system builder** is your ticket to co-creating custom systems with AI—no coding required, unless you want it.
