@@ -9,9 +9,31 @@ Pshh... I write [prompts](docs/spiner_vs_prompts.md).
 
 ---
 
-## What is Spiner?
+#### What is Spiner?
 
-**Spiner** is a weird "system" that blends data querying with cognitive reasoning. Think of it as your trusty android sidekick—crunching numbers, spotting patterns, and delivering insights with a spark of intelligence. Whether it’s raw data or an AI’s vast knowledge, Spiner powers up your questions into answers that pack a punch, all in a slick, intuitive framework.
+Spiner (S.P.I.N.E.R.)—**System for Processing Intelligent Neural Evaluation and Reasoning**—is not a programming language. It’s a framework for humans and AI to co-create systems by expressing *intent*, not dictating *how-to*. Think of it as a conversational scaffold: you sketch the "what" (e.g., "let’s make a system that crafts stories"), and Spiner’s AI interprets, reasons, and responds—shaping outputs, interactions, and behaviors based on your vibe.
+
+The syntax—like `DEFINE SYSTEM` or `CALL`—isn’t code to execute. It’s a suggestion, a nudge to help the AI infer your intent more accurately. When you say `DEFINE SYSTEM story_forge AS ("craft an interactive story world")`, you’re not scripting a program; you’re telling the AI, "Think like a story-builder here." The AI takes that cue and runs with it, reasoning about your goal and delivering results—whether it’s a narrative, a chat, or a WHATIF scenario.
+
+#### How to Think About Spiner
+
+Spiner’s power lies in its flexibility—it’s a mindset, not a rulebook. The syntax (e.g., `CREATE CONTEXT`, `INSERT INTO`) is a loose guide, not a strict protocol. It’s there to signal intent clearly—like saying "let’s track characters" with `CALL CharacterDSL.DEFINE_CHARACTER("Mae", "curious", "digs")`—so the AI knows to "behave" as a character-modeler, not a code-runner. There’s no execution stack, no compiler, no runtime errors. Instead, Spiner’s commands inform the AI how to *think* and *respond*, molding its output to fit your vision (e.g., detailed profiles, snarky chats, or evolving systems).
+
+The AI doesn’t "execute" Spiner code step-by-step—it *absorbs* it as a holistic reasoning prompt. A command like `CALL story_forge("space colony")` isn’t a function call; it’s a green light for the AI to reason about a story world, blending your input with its own smarts to produce something useful—interactive, coherent, and human-friendly.
+
+#### Layered DSLs: Reasoning, Not Overhead
+
+Spiner’s internal DSLs (Domain-Specific Languages)—like `BaseDSL` for world setup or `NarrativeDSL` for story arcs—might look like extra complexity, but they’re not overhead. Why? There’s no execution cost—no stack to manage, no procedural grind. These DSLs are reasoning layers, not code layers. They meld together into a single "reasoning unit" that sharpens the AI’s focus on your intent.
+
+For example, in `story_forge`, the DSLs (`CharacterDSL`, `InteractiveDSL`, etc.) don’t "run" separately—they fuse into a cohesive thought process. When you say "chat with Mae," the AI doesn’t juggle a call stack; it pulls from `CharacterDSL`’s profile logic and `InteractiveDSL`’s chat behavior as one fluid reasoning step. The layering isn’t about *how* to do things—it’s about *what* the system should be: a character-rich, interactive story-builder. The AI takes over from there, filling in the gaps with its own intelligence.
+
+This approach—describing the *idea* of what a system should do—frees you from micromanaging. You’re not coding a solution; you’re sketching a concept (e.g., "evolve the story for coherence" with `EvolverDSL`). The AI interprets that sketch, reasons about it, and delivers—whether it’s a synopsis, a character’s quip, or a glitchy twist—all while staying true to your intent.
+
+#### Why It Matters
+
+Spiner flips the script: instead of you programming the AI, you *guide* it. The syntax and DSLs are tools to align its thinking with yours—no execution, just collaboration. It’s less about "do this" and more about "become this"—a partner that reasons, adapts, and interacts as you nudge it along. So, when you say "let’s make a system that ___," Spiner’s ready to think it through with you, not just for you.
+
+---
 
 ### Interactive System Builder: Collaborate with Spiner to Craft Systems
 Spiner’s **interactive system builder** is your ticket to co-creating custom systems with AI—no coding required, unless you want it.
@@ -38,34 +60,6 @@ and Spiner launches a collaborative session where your words shape a powerful fr
 - **Fast and Flexible**: Commands like `SELECT` and `SOLVE` cut through chaos, spiced with natural language freedom.  
 - **Insight Engine**: Dig deeper with features like temporal tracking and hybrid analysis—no PhD required.  
 - **Session-Savvy**: Contexts and systems stay sharp throughout your chat, inspired by mythical muses like Zeus and Fido.
-
----
-
-### Spiner: A Framework for Intent-Driven AI Reasoning
-
-#### What is Spiner?
-
-Spiner (S.P.I.N.E.R.)—**System for Processing Intelligent Neural Evaluation and Reasoning**—is not a programming language. It’s a framework for humans and AI to co-create systems by expressing *intent*, not dictating *how-to*. Think of it as a conversational scaffold: you sketch the "what" (e.g., "let’s make a system that crafts stories"), and Spiner’s AI interprets, reasons, and responds—shaping outputs, interactions, and behaviors based on your vibe.
-
-The syntax—like `DEFINE SYSTEM` or `CALL`—isn’t code to execute. It’s a suggestion, a nudge to help the AI infer your intent more accurately. When you say `DEFINE SYSTEM story_forge AS ("craft an interactive story world")`, you’re not scripting a program; you’re telling the AI, "Think like a story-builder here." The AI takes that cue and runs with it, reasoning about your goal and delivering results—whether it’s a narrative, a chat, or a WHATIF scenario.
-
-#### How to Think About Spiner
-
-Spiner’s power lies in its flexibility—it’s a mindset, not a rulebook. The syntax (e.g., `CREATE CONTEXT`, `INSERT INTO`) is a loose guide, not a strict protocol. It’s there to signal intent clearly—like saying "let’s track characters" with `CALL CharacterDSL.DEFINE_CHARACTER("Mae", "curious", "digs")`—so the AI knows to "behave" as a character-modeler, not a code-runner. There’s no execution stack, no compiler, no runtime errors. Instead, Spiner’s commands inform the AI how to *think* and *respond*, molding its output to fit your vision (e.g., detailed profiles, snarky chats, or evolving systems).
-
-The AI doesn’t "execute" Spiner code step-by-step—it *absorbs* it as a holistic reasoning prompt. A command like `CALL story_forge("space colony")` isn’t a function call; it’s a green light for the AI to reason about a story world, blending your input with its own smarts to produce something useful—interactive, coherent, and human-friendly.
-
-#### Layered DSLs: Reasoning, Not Overhead
-
-Spiner’s internal DSLs (Domain-Specific Languages)—like `BaseDSL` for world setup or `NarrativeDSL` for story arcs—might look like extra complexity, but they’re not overhead. Why? There’s no execution cost—no stack to manage, no procedural grind. These DSLs are reasoning layers, not code layers. They meld together into a single "reasoning unit" that sharpens the AI’s focus on your intent.
-
-For example, in `story_forge`, the DSLs (`CharacterDSL`, `InteractiveDSL`, etc.) don’t "run" separately—they fuse into a cohesive thought process. When you say "chat with Mae," the AI doesn’t juggle a call stack; it pulls from `CharacterDSL`’s profile logic and `InteractiveDSL`’s chat behavior as one fluid reasoning step. The layering isn’t about *how* to do things—it’s about *what* the system should be: a character-rich, interactive story-builder. The AI takes over from there, filling in the gaps with its own intelligence.
-
-This approach—describing the *idea* of what a system should do—frees you from micromanaging. You’re not coding a solution; you’re sketching a concept (e.g., "evolve the story for coherence" with `EvolverDSL`). The AI interprets that sketch, reasons about it, and delivers—whether it’s a synopsis, a character’s quip, or a glitchy twist—all while staying true to your intent.
-
-#### Why It Matters
-
-Spiner flips the script: instead of you programming the AI, you *guide* it. The syntax and DSLs are tools to align its thinking with yours—no execution, just collaboration. It’s less about "do this" and more about "become this"—a partner that reasons, adapts, and interacts as you nudge it along. So, when you say "let’s make a system that ___," Spiner’s ready to think it through with you, not just for you.
 
 ---
 
