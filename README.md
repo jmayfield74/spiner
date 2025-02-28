@@ -9,29 +9,35 @@ Pshh... I write [prompts](docs/spiner_vs_prompts.md).
 
 ---
 
+### Spiner: A Framework for Intent-Driven AI Reasoning
+
 #### What is Spiner?
 
-Spiner (S.P.I.N.E.R.)—**System for Processing Intelligent Neural Evaluation and Reasoning**—is not a programming language. It’s a framework for humans and AI to co-create systems by expressing *intent*, not dictating *how-to*. Think of it as a conversational scaffold: you sketch the "what" (e.g., "let’s make a system that crafts stories"), and Spiner’s AI interprets, reasons, and responds—shaping outputs, interactions, and behaviors based on your vibe.
+Spiner (S.P.I.N.E.R.)—**System for Processing Intelligent Neural Evaluation and Reasoning**—is not a programming language. It’s a playful, powerful framework where humans and AI co-create systems by expressing *intent*, not dictating *how-to*. Think of it as a conversational sandbox: you say "let’s make a system that crafts stories," and Spiner’s AI leaps in—reasoning, riffing, and shaping outputs, interactions, and behaviors to match your vibe.
 
-The syntax—like `DEFINE SYSTEM` or `CALL`—isn’t code to execute. It’s a suggestion, a nudge to help the AI infer your intent more accurately. When you say `DEFINE SYSTEM story_forge AS ("craft an interactive story world")`, you’re not scripting a program; you’re telling the AI, "Think like a story-builder here." The AI takes that cue and runs with it, reasoning about your goal and delivering results—whether it’s a narrative, a chat, or a WHATIF scenario.
+The syntax—like `DEFINE SYSTEM` or `CALL`—isn’t code you execute. It’s a suggestion, a nudge to help the AI infer your intent with pinpoint accuracy. When you toss out `DEFINE SYSTEM story_forge AS ("craft an interactive story world")`, you’re not scripting—you’re saying, "Hey, think like a story-builder!" The AI grabs that cue and runs, delivering everything from quirky chats to glitchy worlds, all while having a bit of fun along the way.
 
 #### How to Think About Spiner
 
-Spiner’s power lies in its flexibility—it’s a mindset, not a rulebook. The syntax (e.g., `CREATE CONTEXT`, `INSERT INTO`) is a loose guide, not a strict protocol. It’s there to signal intent clearly—like saying "let’s track characters" with `CALL CharacterDSL.DEFINE_CHARACTER("Mae", "curious", "digs")`—so the AI knows to "behave" as a character-modeler, not a code-runner. There’s no execution stack, no compiler, no runtime errors. Instead, Spiner’s commands inform the AI how to *think* and *respond*, molding its output to fit your vision (e.g., detailed profiles, snarky chats, or evolving systems).
+Spiner’s strength is its flexibility—it’s a mindset, not a rulebook. The syntax (e.g., `CREATE CONTEXT`, `INSERT INTO`) is a loose guide to signal intent—like "let’s track characters" with `CALL CharacterDSL.DEFINE_CHARACTER("Mae", "curious", "digs")`—so the AI knows to *become* a character-modeler, not just churn out lines. There’s no execution stack, no compiler, no errors to debug. These commands tell the AI how to *think* and *behave*, molding its responses—detailed profiles, snarky banter, evolving systems—to fit your vision.
 
-The AI doesn’t "execute" Spiner code step-by-step—it *absorbs* it as a holistic reasoning prompt. A command like `CALL story_forge("space colony")` isn’t a function call; it’s a green light for the AI to reason about a story world, blending your input with its own smarts to produce something useful—interactive, coherent, and human-friendly.
+The AI doesn’t "run" Spiner code step-by-step—it *soaks it in* as a reasoning prompt. `CALL story_forge("space colony")` isn’t a function call; it’s an invitation for the AI to dream up a story world, blending your input with its smarts to create something useful and interactive. It’s less "do this" and more "become this"—a partner that reasons and adapts with a grin.
+
+#### You Don’t Write the "Code"—Spiner Does
+
+Here’s the twist: you won’t typically write Spiner "code" yourself. You ask the AI (the Spiner system) to whip it up for you on the fly. Say "let’s build a system that tracks quirky battles," and Spiner might spin up `DEFINE SYSTEM battle_tracker AS (...)` behind the scenes—implicitly crafting the structure to match your intent. You’re not hunched over a keyboard crafting DSLs; you’re nudging the AI, and it builds the scaffolding—playfully proposing layers like `BattleDSL` or `QuirkDSL`—to keep the reasoning sharp. It’s a hands-off collab: you dream, Spiner drafts.
+
+#### Syntax Isn’t Fixed—It’s a Living Guideline
+
+Spiner’s syntax isn’t set in stone—it’s a guideline, not gospel. When the AI generates "code," it uses the Spiner framework as a compass, inventing syntax as it goes to pin down your intent. That `CALL` or `DEFINE`? Just a starting point. If Spiner needs a `ChaosDSL` to handle wild outcomes or a `GlitchMeisterDSL` for funky twists, it’ll conjure them up—tailoring the "language" to the task. This DSL-generation magic isn’t rigid; it’s the AI flexing its creativity to reason better. You say "evolve the story," and it might suggest `CALL EvolverDSL.TWEAK("coherence")`—syntax born from the moment, not a manual. It’s all about intent, not rules.
 
 #### Layered DSLs: Reasoning, Not Overhead
 
-Spiner’s internal DSLs (Domain-Specific Languages)—like `BaseDSL` for world setup or `NarrativeDSL` for story arcs—might look like extra complexity, but they’re not overhead. Why? There’s no execution cost—no stack to manage, no procedural grind. These DSLs are reasoning layers, not code layers. They meld together into a single "reasoning unit" that sharpens the AI’s focus on your intent.
-
-For example, in `story_forge`, the DSLs (`CharacterDSL`, `InteractiveDSL`, etc.) don’t "run" separately—they fuse into a cohesive thought process. When you say "chat with Mae," the AI doesn’t juggle a call stack; it pulls from `CharacterDSL`’s profile logic and `InteractiveDSL`’s chat behavior as one fluid reasoning step. The layering isn’t about *how* to do things—it’s about *what* the system should be: a character-rich, interactive story-builder. The AI takes over from there, filling in the gaps with its own intelligence.
-
-This approach—describing the *idea* of what a system should do—frees you from micromanaging. You’re not coding a solution; you’re sketching a concept (e.g., "evolve the story for coherence" with `EvolverDSL`). The AI interprets that sketch, reasons about it, and delivers—whether it’s a synopsis, a character’s quip, or a glitchy twist—all while staying true to your intent.
+Those internal DSLs—like `BaseDSL` for worlds or `NarrativeDSL` for arcs—might look like extra layers, but they’re not overhead. There’s no execution cost—no stack, no grind. They’re reasoning lenses that fuse into a single "reasoning unit," sharpening the AI’s grasp of your goal. When you say "chat with Mae," it’s not juggling `CharacterDSL` and `InteractiveDSL` separately—it’s one fluid thought, blending profile and banter seamlessly. The layering isn’t about *how*—it’s about *what*: a system that’s character-rich or glitch-happy. The AI takes that "what" and runs, no micromanaging needed.
 
 #### Why It Matters
 
-Spiner flips the script: instead of you programming the AI, you *guide* it. The syntax and DSLs are tools to align its thinking with yours—no execution, just collaboration. It’s less about "do this" and more about "become this"—a partner that reasons, adapts, and interacts as you nudge it along. So, when you say "let’s make a system that ___," Spiner’s ready to think it through with you, not just for you.
+Spiner flips the game: you don’t program the AI—you *guide* it, and it builds the rest. The syntax and DSLs align its brain with yours, turning "let’s make a system that ___" into a creative jam session. It’s not about rigid instructions; it’s about sparking an AI that reasons, invents, and interacts—delivering outputs with a wink and a nod. Spiner’s your partner in the sandbox, ready to think it through with you, not just for you.
 
 ---
 
