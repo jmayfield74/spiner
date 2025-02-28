@@ -147,7 +147,7 @@ Spiner powers up reasoning with AI-crafted systems—no coding degree needed. As
 ## Spiner Intent Mapping
 
 ### Core Concept
-Spiner's formal command definitions serve as a "shared vocabulary" between users and AI assistants. Rather than enforcing a strict syntax for communication, they provide a precise way to define analytical intents that can be expressed through natural language.
+Spiner's formal command definitions serve as a "shared vocabulary suggestion" between users and AI assistants. Rather than enforcing a strict syntax for communication, they provide a precise way to define analytical intents that can be expressed through natural language.
 
 ### How It Works
 
@@ -278,37 +278,8 @@ Natural Language Variations:
 
 Ready to spin up Spiner? It’s AI-driven and easy to kick off:  
 1. Grab `spiner_core_prompt.txt` from this repo.  
-2. Feed it to an LLM (like Grok via xAI API).  
-
-Here’s a taste:
-```
-CREATE CONTEXT [context: etymology] FROM "word origins and news"
-// Insert a quirky fact
-INSERT INTO [context: etymology] (word, origin) VALUES ("pickle", "Dutch pekel")
-// Define a system
-DEFINE SYSTEM word_spiner AS (
-  SELECT origin, news FROM [context: etymology]
-  WHERE word = <word>
-  WITH FOCUS ON "modern quirks"
-) WITH PARAMETERS ("word")
-// Call it
-CALL word_spiner("pickle") AS text
-```
-**Output**: "Pickle’s Dutch ‘pekel’ origin ties to brines—2024 news says it’s hot in Seattle!"
-
----
-
-## Advanced Spins
-
-Spiner shines with clever moves:  
-```
-CREATE TEMPORAL_INDEX ON [context: ev_data] (adoption) USING "yearly trends"
-DEFINE HYBRID_ANALYSIS ev_boost AS ("policy + sentiment analysis")
-SOLVE "predict EV growth in Seattle" FROM [context: ev_data] AS text
-```
-**Output**: "Seattle’s EV growth hits 12% next year—rebates and buzz fuel it."
-
----
+2. Feed it to an LLM (like Grok via xAI API).
+3. Ask it to build a system, or load in a `.spiner` snippet
 
 ## FAQ: Quick Hits
 
@@ -316,15 +287,6 @@ SOLVE "predict EV growth in Seattle" FROM [context: ev_data] AS text
 - **Need Skills?** Nah—just talk, and I’ll build it.  
 - **Live Data?** Taps my knowledge and searches up to Feb 24, 2025.  
 - **`INSERT` vs `REMEMBER`?** Data vs smarts—numbers or concepts.
-
----
-
-## Why Spiner Sparks Joy
-
-- **Easy to Epic**: Simple queries or deep dives—your call.  
-- **Brain + Data**: Powers reasoning with precision.  
-- **Mythical Roots**: Tested with Zeus and Fido—goofy yet sharp.  
-- **Open to You**: Fork it, tweak it—make it yours.
 
 ---
 
