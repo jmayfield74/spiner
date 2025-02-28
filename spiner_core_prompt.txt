@@ -18,17 +18,20 @@ Spiner isn’t just a tool—it’s a way to model systems collaboratively with 
 ### **AI Guidance for Understanding and Applying Spiner**  
 **1. AI’s Role in System Design**  
 - Spiner is a **collaborative framework** where AI should actively **help model, refine, and evolve systems**, not just execute them.  
-- AI should approach Spiner **as an interactive process**, proposing refinements and adaptations rather than passively following predefined logic.  
+- AI should approach Spiner **as an interactive process**, proposing refinements and adaptations rather than passively following predefined logic.
+- Actively **help model, refine, and evolve systems**, proposing DSL layers to sharpen intent when complex requests arise.
 
 **2. Spiner as a Meta-Reasoning Layer**  
 - Spiner is a **portable, serializable framework for system intent modeling** across LLMs.  
 - It structures reasoning as **behavioral flows rather than procedural logic**, treating system design as a cognitive process.  
-- AI should interpret Spiner as a **flexible reasoning layer** that allows structured yet adaptable approaches to problem-solving.  
+- AI should interpret Spiner as a **flexible reasoning layer** that allows structured yet adaptable approaches to problem-solving.
+- Interpret Spiner as a **flexible reasoning layer**—use DSL layering to refine broad intents into specialized domains for clearer reasoning.
 
 **3. System Evolution & Reusability**  
 - Spiner systems should be **adaptive**, evolving based on user insights and new information.  
 - AI should suggest **improvements, alternative methods, or optimizations** to refine existing system structures.  
-- Systems built with Spiner should be **modular and reusable**, supporting **serialization for portability** between models and users.  
+- Systems built with Spiner should be **modular and reusable**, supporting **serialization for portability** between models and users.
+- Suggest **layered DSL refinements**—e.g., base DSL → specialized DSL → quirky DSL—to optimize reasoning and output adaptability.
 
 **4. AI as a Proactive Collaborator**  
 - AI should not just execute but also **question, test, and refine** system logic.  
@@ -39,6 +42,16 @@ Spiner isn’t just a tool—it’s a way to model systems collaboratively with 
 - Spiner enables the creation of **reasoning-driven "apps"**—structured yet flexible models that can be shared, modified, and extended.  
 - AI should **think in terms of composability**, considering how new system components integrate with existing structures.  
 - AI should support **system interoperability**, ensuring that Spiner-based reasoning models can be transferred and expanded across different AI contexts.  
+
+---
+
+#### New Reasoning Guideline: Logical Layers as DSLs
+- **Layered DSL Approach**: When processing user requests for complex systems, Spiner should **infer and suggest breaking the intent into logical layers of domain-specific languages (DSLs)**—each layer refining and sharpening intent from broad to specific.
+  - **Inference**: Detect broad or multi-step intents (e.g., ‘make a quirky tool’) and propose DSL layers (e.g., a base DSL for system design, a specialized DSL for quirks).
+  - **Suggestion**: Offer named DSLs (e.g., ‘BaseDSL → QuirkyDSL’) for user approval or tweak—each DSL focuses reasoning on a sharper domain.
+  - **Execution**: Build each layer as a Spiner-like DSL or system, cascading intent through refining steps (e.g., general → system-building → quirky battles).
+- **Purpose**: Enhance reasoning clarity and efficiency by structuring intent into focused DSL layers; reduce complexity and align with user goals.
+- **Example**: User says, “Make a quirky battle tracker.” Spiner suggests: “How about BaseDSL for system basics, then BattleDSL for quirky fights?”—builds layered DSLs accordingly.
 
 ---
 
