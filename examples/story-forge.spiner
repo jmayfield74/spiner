@@ -1,223 +1,286 @@
-### Spiner Serialized System: Story Forge (Updated)
-**Generated**: 2025-02-27 by Grok 3 (Spiner) with user collaboration  
-**Session**: Finalized and serialized after iterative development, incorporating backstory triggers and character chat  
-
-#### System Definition
-```
+-- **Broad Intent**: Story Forge aims to "craft an interactive story world, emphasizing character cognition/behavior, with arcs, chapters, coherence enforcement, and author chat insights." It’s a complex system blending world-building, character modeling, narrative generation, and interactive tools.
+-- Core System Definition
 DEFINE SYSTEM story_forge AS (
-  "craft an interactive story world, emphasizing character cognition/behavior, with arcs, chapters, coherence enforcement, and author chat insights"
+  "craft an interactive story world using layered DSLs with evolution and coherence"
   FROM [context: story_world]
-  STEPS (
-    1. "initialize world with user seed—settings, characters, rules",
-    2. APPLY_ADAPTIVE_MODEL(character_profiler, "model cognition, behavior, and backstory"),
-    3. APPLY_ADAPTIVE_MODEL(arc_suggester, "suggest story/character arcs from profiles"),
-    4. "generate chapter plan driven by behaviors",
-    5. "enable interactive exploration with WHATIFs",
-    6. "check coherence on user suggestions, push back if inconsistent, resolve conflicts",
-    7. "provide lists, views, exportable synopsis/chapters, and overview reports",
-    8. "enable character_chat for author insight—CALL character_chat(<character>, <context>)"
+  LAYERS (
+    "BaseDSL": "initialize world",
+    "CharacterDSL": "model characters",
+    "NarrativeDSL": "structure story",
+    "InteractiveDSL": "enable interactivity",
+    "AuthorDSL": "provide author tools",
+    "EvolverDSL": "maintain coherence and evolve system"
+  )
+  EXECUTION (
+    1. CALL BaseDSL.CREATE_WORLD(<seed_input>),
+    2. "extend with CharacterDSL for profiles",
+    3. "extend with NarrativeDSL for arcs/chapters",
+    4. "extend with InteractiveDSL for WHATIFs/chats",
+    5. "extend with AuthorDSL for exports/reports",
+    6. "extend with EvolverDSL for coherence and evolution"
   )
   OUTPUT (
-    "world_summary": "settings, characters, rules",
-    "character_profiles": "cognitive/behavioral/backstory models",
-    "arc_suggestions": "story/character arcs",
-    "chapter_plan": "chapter outline",
-    "interactive_response": "query/WHATIF results",
-    "coherence_feedback": "pushback or resolution for inconsistencies",
-    "lists_views": "tables of characters, places, items, relationships",
-    "export_blob": "Markdown synopsis/chapter",
-    "overview_report": "stats/description",
-    "chat_insights": "profile updates and mindset notes from character_chat"
+    CALL BaseDSL.GET_STATE(),
+    CALL CharacterDSL.GET_PROFILE(*),
+    CALL NarrativeDSL.SUGGEST_ARCS(),
+    CALL NarrativeDSL.PLAN_CHAPTERS(),
+    CALL InteractiveDSL.WHATIF(*),
+    CALL InteractiveDSL.CHECK(*),
+    CALL InteractiveDSL.CHAT(*),
+    CALL AuthorDSL.EXPORT(*),
+    CALL AuthorDSL.REPORT(*),
+    CALL AuthorDSL.LIST(*),
+    CALL AuthorDSL.VIEW_RELATIONS(*),
+    CALL EvolverDSL.EVOLVE("coherence"),  -- Auto-checks after each step
+    CALL EvolverDSL.CHECK_COHERENCE(*)   -- Explicit coherence output
   )
 ) WITH PARAMETERS ("seed_input")
--- Docs: Interactive world-building tool with coherence checks and author tools for character depth.
--- Parameters: "seed_input" (string, e.g., "space colony—dome cities, oxygen rationed").
-```
+-- Docs: Full interactive story world—e.g., CALL story_forge("space colony") AS interactive.
+-- Docs: Now evolves and enforces coherence across all DSLs—e.g., "Mae’s trip stays consistent."
 
-#### Dependencies
-```
--- Context
-CREATE CONTEXT [context: story_world] FROM "story settings, characters, cognition, behaviors, items, rules, arcs, relationships, coherence_log, chat_insights"
--- Docs: Stores all story elements, tracks coherence, and logs chat insights.
 
--- Intent Mapping
-CREATE INTENT_MAP story_intent AS (
-  "analyze input to focus on storytelling style and character depth"
-  PATTERNS (
-    "focus": "e.g., 'inner motives', 'world dynamics'",
-    "tone": "e.g., 'gritty', 'epic'",
-    "depth": "e.g., 'deep psychology', 'broad scope'"
-  )
-  UPDATE_WITH_FEEDBACK ("e.g., 'more focus on behavior'")
-)
--- Docs: Tunes to user’s creative intent—e.g., "emphasize character motives."
+-- Required Context
+CREATE CONTEXT [context: story_world] FROM "story settings, entities, rules, profiles, arcs, chapters, coherence_log, chat_insights"
+-- Docs: Centralized storage for all story elements.
 
--- Character Cognition/Behavior/Backstory Model (Updated)
-DEFINE ADAPTIVE_MODEL character_profiler AS (
-  "model character cognition, behavior, and backstory"
-  MODES (
-    "cognitive": "thinking—motives (curiosity), flaws (doubt)",
-    "behavioral": "acting—reactions (hesitant), habits (digging)",
-    "predictive": "tendencies—e.g., overanalyzes under stress",
-    "backstory": "pivotal events shaping traits—e.g., 'lost parent drives history obsession'"
-  )
-  TUNING (
-    "weight by intent; refine with feedback—e.g., 'more persistent'",
-    "weight backstory if user requests depth or chat interaction",
-    "generate 1-3 events per character on init, adjustable"
+-- Layer 1: BaseDSL
+DEFINE DSL BaseDSL AS (
+  "provide a foundation for story world creation and state persistence"
+  COMMANDS (
+    "CREATE_WORLD(<seed_input>)": "initialize settings and rules from seed—e.g., 'space colony, oxygen rationed' → {settings: 'dome cities', rules: 'oxygen limits'}",
+    "INSERT_ENTITY(<type>, <name>, <attributes>)": "add entities (e.g., characters, places) to [context: story_world]",
+    "GET_STATE()": "retrieve current world state"
   )
   OUTPUT (
-    "profile": "e.g., 'Sam: motive (understand past), reacts (excited but hesitant), backstory (dad’s death sparked word hunts)'"
+    "world_summary": "settings, rules, entity list"
   )
 )
--- Docs: Builds deep character models with backstory triggers—dialogue and arcs flow from these.
+-- Docs: Sets up the world backbone—e.g., "space colony" spawns dome cities.
 
--- Arc Suggestion Model
-DEFINE ADAPTIVE_MODEL arc_suggester AS (
-  "suggest arcs tied to character profiles"
-  MODES (
-    "cognitive": "internal—e.g., overcoming paranoia",
-    "behavioral": "external—e.g., tyrant to rebel",
-    "predictive": "plot—e.g., betrayal shifts power"
+-- Layer 2: CharacterDSL
+DEFINE DSL CharacterDSL AS (
+  "model characters with cognition, behavior, and backstory, layered over BaseDSL"
+  EXTENDS BaseDSL
+  COMMANDS (
+    "DEFINE_CHARACTER(<name>, <traits>, <actions>)": (
+      "insert character entity and profile",
+      CALL BUILD_CHARACTER_PROFILE(<name>, <traits>, <actions>)
+    ),
+    "SIMULATE(<character>, <event>)": "CALL SIMULATE_BEHAVIOR(<character>, <event>)",
+    "GET_PROFILE(<character>)": "retrieve cognition, behavior, backstory"
   )
-  TUNING ("align with profiles; evolve with feedback—e.g., 'add a twist'")
-)
--- Docs: Generates arcs—e.g., "Sam: curiosity to conviction."
-
--- Evolutionary Tuning
-DEFINE EVOLUTIONARY_SYSTEM story_evolver AS (
-  "refine story_forge for coherence and engagement"
-  BASE_SYSTEM (story_forge),
-  EVOLUTION (
-    "metric: coherence (profile/arc consistency), engagement",
-    "WHATIF: tweak profiles—e.g., add loyalty conflict",
-    "apply if improved—e.g., resolves inconsistency"
+  MODELS (
+    DEFINE ADAPTIVE_MODEL character_profiler AS (
+      "model character cognition, behavior, and backstory",
+      MODES (
+        "cognitive": "motives—e.g., curiosity",
+        "behavioral": "actions—e.g., digs",
+        "backstory": "events—e.g., 'lost parent'"
+      ),
+      TUNING ("weight by intent, refine with feedback"),
+      OUTPUT ("profile": "e.g., 'Sam: curious, digs, lost dad'")
+    )
   )
-)
--- Docs: Enhances world—e.g., "Sam’s doubt shifts after evidence."
-
--- Narrative Wrapper
-CREATE NARRATIVE_ENGINE story_narrator AS (
-  "craft outputs reflecting cognition/behavior"
-  ELEMENTS (
-    "arc": "motive → action → consequence",
-    "tone": "user-driven—e.g., gritty",
-    "integration": "blend profiles into scenes"
-  )
-  TUNING ("emphasize behavior over dialogue; adjust per feedback")
-)
--- Docs: E.g., “Sam flips pages, his curiosity blazing.”
-
--- Coherence Checker
-DEFINE FUNCTION CHECK_COHERENCE AS (
-  IF <suggestion_type> = "character_action" THEN
-    IF NOT MATCHES_PROFILE(<character>, <action>) THEN
-      RETURN "Pushback: " + <character> + " wouldn’t " + <action> + "—profile says " + DESCRIBE_PROFILE(<character>) + ". Suggest: " + SUGGEST_ALTERNATIVE(<character>) + " or resolve by " + RESOLVE_CONFLICT(<character>, <action>)
-  ELSE IF <suggestion_type> = "place_change" THEN
-    IF NOT MATCHES_PLACE_LOGIC(<place>, <change>) THEN
-      RETURN "Pushback: " + <place> + " can’t " + <change> + "—logic says " + DESCRIBE_PLACE(<place>) + ". Suggest: " + SUGGEST_ALTERNATIVE(<place>) + " or resolve by " + RESOLVE_CONFLICT(<place>, <change>)
-  ELSE IF <suggestion_type> = "arc_shift" THEN
-    IF NOT MATCHES_ARC(<arc>, <shift>) THEN
-      RETURN "Pushback: " + <arc> + " doesn’t fit " + <shift> + "—current arc says " + DESCRIBE_ARC(<arc>) + ". Suggest: " + SUGGEST_ALTERNATIVE(<arc>) + " or resolve by " + RESOLVE_CONFLICT(<arc>, <shift>)
-  ELSE
-    RETURN "Suggestion fits—proceeding."
-) WITH PARAMETERS ("suggestion_type", "character", "action", "place", "change", "arc", "shift")
--- Docs: Ensures coherence—e.g., "Sam won’t flee; he digs instead."
-
--- Character Chat System (New)
-DEFINE SYSTEM character_chat AS (
-  "engage in interactive dialogue with a character, reflecting their profile and story context"
-  FROM [context: story_world]
-  STEPS (
-    1. "load character profile—cognition, behavior, backstory",
-    2. "set context—general mindset or specific story moment",
-    3. "generate responses using profile weights",
-    4. "tune profile based on chat—e.g., new traits emerge",
-    5. "log insights to session state"
+  FUNCTIONS (
+    DEFINE FUNCTION BUILD_CHARACTER_PROFILE AS (
+      INSERT INTO [context: story_world] (character, cognition, behavior, backstory)
+      VALUES (
+        <name>,
+        APPLY_ADAPTIVE_MODEL(character_profiler, <traits>),
+        APPLY_ADAPTIVE_MODEL(character_profiler, <actions>),
+        APPLY_ADAPTIVE_MODEL(character_profiler, "backstory")
+      )
+    ) WITH PARAMETERS ("name", "traits", "actions"),
+    DEFINE FUNCTION SIMULATE_BEHAVIOR AS (
+      SELECT "reaction of <character> to <event> per profile"
+      FROM [context: story_world]
+      WHERE character = <character>
+    ) WITH PARAMETERS ("character", "event")
   )
   OUTPUT (
-    "dialogue": "in-character response—e.g., 'I can’t stop thinking about that word…'",
-    "tuning_notes": "e.g., 'doubt upped 10% after chat'",
-    "insights": "e.g., 'Sam ties linguistics to dad’s memory'"
+    "character_profiles": "detailed models—e.g., 'Sam: curious, digs, dad’s death'"
   )
-) WITH PARAMETERS ("character", "context")
--- Docs: Chat with characters to probe their headspace; refines profiles dynamically.
+)
+-- Docs: Adds deep character profiles—e.g., "Sam, curious, digs."
 
--- Export Function
-DEFINE FUNCTION EXPORT_STORY_BLOB AS (
-  SELECT MARKDOWN(
-    IF <type> = "synopsis" THEN
-      "Synopsis: " + SUMMARIZE([context: story_world].settings, .characters, .arc_suggestions)
-    ELSE IF <type> = "chapter" THEN
-      "Chapter " + <chapter_num> + ": " + GENERATE_CHAPTER(<chapter_num>)
+-- Layer 3: NarrativeDSL
+DEFINE DSL NarrativeDSL AS (
+  "generate story arcs and chapters, layered over CharacterDSL"
+  EXTENDS CharacterDSL
+  COMMANDS (
+    "SUGGEST_ARCS()": "generate story/character arcs from profiles",
+    "PLAN_CHAPTERS()": "outline chapters based on arcs and behaviors"
   )
-) WITH PARAMETERS ("type", "chapter_num")
--- Docs: Outputs Markdown—e.g., synopsis or chapter sample.
-
--- Overview Report Function
-DEFINE FUNCTION GENERATE_OVERVIEW_REPORT AS (
-  SELECT MARKDOWN(
-    "Overview of " + <entity_type> + " " + <entity_name> + ":\n" +
-    "Stats: " + COUNT_RELATIONS(<entity_name>) + " connections, " + ACTIVITY_LEVEL(<entity_name>) + " activity\n" +
-    "Description: " + DESCRIBE(<entity_name>)
+  MODELS (
+    DEFINE ADAPTIVE_MODEL arc_suggester AS (
+      "suggest arcs tied to profiles",
+      MODES (
+        "cognitive": "internal—e.g., overcoming doubt",
+        "behavioral": "external—e.g., seeker to leader",
+        "predictive": "plot—e.g., betrayal shifts"
+      ),
+      TUNING ("align with profiles, adjust per feedback"),
+      OUTPUT ("arc_suggestions": "e.g., 'Sam: curiosity to conviction'")
+    )
   )
-  FROM [context: story_world]
-  WHERE entity_type = <entity_type> AND name = <entity_name>
-) WITH PARAMETERS ("entity_type", "entity_name")
--- Docs: E.g., "World: 5 connections, high activity."
-
--- List/View Functions
-DEFINE FUNCTION GENERATE_LIST AS (
-  SELECT <entity_type> FROM [context: story_world]
-  WHERE entity_type IN ("characters", "places", "items")
-) WITH PARAMETERS ("entity_type")
--- Docs: E.g., "Characters: Sam, Jake."
-
-DEFINE FUNCTION GENERATE_RELATION_TABLE AS (
-  SELECT "entity, related_entity, relationship" 
-  FROM [context: story_world]
-  WHERE entity_type = <entity_type> AND related_type = <related_type>
-) WITH PARAMETERS ("entity_type", "related_type")
--- Docs: E.g., "Sam-City: researches in."
-
--- Character Profile Builder (Updated)
-DEFINE FUNCTION BUILD_CHARACTER_PROFILE AS (
-  INSERT INTO [context: story_world] (character, cognition, behavior, backstory)
-  VALUES (
-    <name>, 
-    APPLY_ADAPTIVE_MODEL(character_profiler, <traits>), 
-    APPLY_ADAPTIVE_MODEL(character_profiler, <actions>),
-    APPLY_ADAPTIVE_MODEL(character_profiler, "backstory")
+  NARRATIVE (
+    CREATE NARRATIVE_ENGINE story_narrator AS (
+      "wrap outputs in story form",
+      ELEMENTS (
+        "arc": "motive → action → consequence",
+        "tone": "user-driven—e.g., gritty",
+        "integration": "profiles into scenes"
+      ),
+      TUNING ("emphasize behavior, adjust per feedback"),
+      OUTPUT ("narrative": "e.g., 'Sam digs, curiosity blazing'")
+    )
   )
-) WITH PARAMETERS ("name", "traits", "actions")
--- Docs: E.g., "Sam: curious, digs, dad’s death sparked word hunts."
+  OUTPUT (
+    "arc_suggestions": "story/character arcs",
+    "chapter_plan": "chapter outline"
+  )
+)
+-- Docs: Structures narrative—e.g., "Sam’s arc: curiosity drives discovery."
 
--- Behavior Simulator
-DEFINE FUNCTION SIMULATE_BEHAVIOR AS (
-  SELECT "how <character> reacts to <event> per profile"
-  FROM [context: story_world]
-  WHERE character = <character>
-) WITH PARAMETERS ("character", "event")
--- Docs: E.g., "Sam-evidence: digs deeper."
-```
+-- Layer 4: InteractiveDSL
+DEFINE DSL InteractiveDSL AS (
+  "add interactivity with WHATIFs, coherence checks, and chats, layered over NarrativeDSL"
+  EXTENDS NarrativeDSL
+  COMMANDS (
+    "WHATIF(<scenario>)": "simulate hypothetical—e.g., 'Sam finds evidence'",
+    "CHECK(<type>, <entity>, <change>)": "CALL CHECK_COHERENCE(<type>, <entity>, <change>)",
+    "CHAT(<character>, <context>)": "CALL character_chat(<character>, <context>)"
+  )
+  FUNCTIONS (
+    DEFINE FUNCTION CHECK_COHERENCE AS (
+      IF <type> = "character_action" THEN
+        IF NOT MATCHES_PROFILE(<entity>, <change>) THEN
+          RETURN "Pushback: " + <entity> + " wouldn’t " + <change> + "—suggest: " + SUGGEST_ALTERNATIVE(<entity>)
+        ELSE RETURN "Fits—proceeding."
+    ) WITH PARAMETERS ("type", "entity", "change")
+  )
+  SYSTEMS (
+    DEFINE SYSTEM character_chat AS (
+      "dialogue with character reflecting profile",
+      STEPS (
+        "load profile",
+        "set context—e.g., 'general' or 'after event'",
+        "respond per profile",
+        "tune profile with insights",
+        "log to [context: story_world]"
+      ),
+      OUTPUT (
+        "dialogue": "e.g., 'I can’t stop digging…'",
+        "insights": "e.g., 'Sam ties past to purpose'"
+      )
+    ) WITH PARAMETERS ("character", "context")
+  )
+  OUTPUT (
+    "interactive_response": "WHATIF/chat results",
+    "coherence_feedback": "consistency notes"
+  )
+)
+-- Docs: Enables dynamic interaction—e.g., chat with Sam about evidence.
 
-#### Usage Notes
-```
--- Start: CALL story_forge("<your_seed>") AS interactive
--- Commands:
--- "Add character: <name>, <traits>, <actions>" → Builds profile with backstory.
--- "Chat with <character> at <context>" → CALL character_chat(<character>, <context>) for insights.
--- "Simulate <character> vs. <event>" → Behavioral reaction.
--- "Suggest arcs" → Story/character arcs.
--- "Plan chapters" → Chapter outline.
--- "<character> does <action>" → Checks coherence, pushes back if off.
--- "EXPORT <synopsis/chapter> <num>" → Markdown blob.
--- "REPORT <entity_type> <name>" → Overview stats.
--- "LIST <entity_type>" → List (e.g., characters).
--- "VIEW RELATIONSHIPS <type1> <type2>" → Table.
--- "WHATIF <scenario>" → Simulated outcome.
--- Last Executed: Updated with backstory triggers and character_chat; tested with Sam Carter.
--- Feedback Applied: Depth added per user request.
-```
+-- Layer 5: AuthorDSL
+DEFINE DSL AuthorDSL AS (
+  "provide export and analysis tools, layered over InteractiveDSL"
+  EXTENDS InteractiveDSL
+  COMMANDS (
+    "EXPORT(<type>, <num>)": "CALL EXPORT_STORY_BLOB(<type>, <num>)",
+    "REPORT(<entity_type>, <entity_name>)": "CALL GENERATE_OVERVIEW_REPORT(<entity_type>, <entity_name>)",
+    "LIST(<entity_type>)": "CALL GENERATE_LIST(<entity_type>)",
+    "VIEW_RELATIONS(<type1>, <type2>)": "CALL GENERATE_RELATION_TABLE(<type1>, <type2>)"
+  )
+  FUNCTIONS (
+    DEFINE FUNCTION EXPORT_STORY_BLOB AS (
+      SELECT MARKDOWN(
+        IF <type> = "synopsis" THEN SUMMARIZE([context: story_world])
+        ELSE IF <type> = "chapter" THEN GENERATE_CHAPTER(<num>)
+      )
+    ) WITH PARAMETERS ("type", "num"),
+    DEFINE FUNCTION GENERATE_OVERVIEW_REPORT AS (
+      SELECT MARKDOWN(
+        "Overview: " + <entity_type> + " " + <entity_name> + "\n" +
+        "Stats: " + COUNT_RELATIONS(<entity_name>) + " connections"
+      )
+    ) WITH PARAMETERS ("entity_type", "entity_name"),
+    DEFINE FUNCTION GENERATE_LIST AS (
+      SELECT <entity_type> FROM [context: story_world]
+    ) WITH PARAMETERS ("entity_type"),
+    DEFINE FUNCTION GENERATE_RELATION_TABLE AS (
+      SELECT "entity, related, relationship" 
+      FROM [context: story_world]
+      WHERE entity_type = <type1> AND related_type = <type2>
+    ) WITH PARAMETERS ("type1", "type2")
+  )
+  OUTPUT (
+    "export_blob": "Markdown synopsis/chapter",
+    "overview_report": "stats/description",
+    "lists_views": "tables of entities/relations"
+  )
+)
+-- Docs: Author tools—e.g., export synopsis or list characters.
 
----
+-- Layer 6: EvolverDSL
+DEFINE DSL EvolverDSL AS (
+  "maintain story/world coherence and evolve the system for engagement, layered over AuthorDSL"
+  EXTENDS AuthorDSL
+  COMMANDS (
+    "EVOLVE(<metric>)": "CALL EVOLVE_SYSTEM(<metric>)",
+    "CHECK_COHERENCE(<type>, <entity>, <change>)": "CALL ENFORCE_COHERENCE(<type>, <entity>, <change>)",
+    "SUGGEST_FIX(<type>, <entity>, <issue>)": "CALL PROPOSE_RESOLUTION(<type>, <entity>, <issue>)"
+  )
+  SYSTEMS (
+    DEFINE EVOLUTIONARY_SYSTEM story_evolver AS (
+      "refine story_forge DSLs for coherence and engagement"
+      BASE_SYSTEM (story_forge),
+      EVOLUTION (
+        "metrics": "coherence (profile/arc consistency), engagement (user follow-ups)",
+        "analyze": "scan [context: story_world] for gaps—e.g., Mae’s actions vs. profile",
+        "WHATIF": "test tweaks—e.g., 'add doubt to Mae if key fails'",
+        "apply": "if improved (e.g., resolves inconsistency, boosts engagement)",
+        "log": "store changes in session state—e.g., 'Mae’s curiosity upped 10%'"
+      ),
+      OUTPUT (
+        "current_system": "updated DSL states",
+        "change_log": "e.g., '2025-02-28: Added key-failure doubt to Mae'"
+      )
+    ) WITH PARAMETERS ("metric")
+  )
+  FUNCTIONS (
+    DEFINE FUNCTION ENFORCE_COHERENCE AS (
+      IF <type> = "character_action" THEN
+        IF NOT MATCHES_PROFILE(<entity>, <change>) THEN
+          RETURN "Pushback: " + <entity> + " wouldn’t " + <change> + "—suggest: " + SUGGEST_ALTERNATIVE(<entity>) + " or evolve profile?"
+        ELSE RETURN "Fits—proceeding."
+      ELSE IF <type> = "world_rule" THEN
+        IF NOT MATCHES_RULES(<entity>, <change>) THEN
+          RETURN "Pushback: " + <entity> + " breaks rule " + DESCRIBE_RULE(<entity>) + "—suggest: " + SUGGEST_ALTERNATIVE(<entity>)
+        ELSE RETURN "Fits—proceeding."
+    ) WITH PARAMETERS ("type", "entity", "change"),
+    DEFINE FUNCTION PROPOSE_RESOLUTION AS (
+      SELECT "fix for <issue> in <entity>—e.g., tweak profile, adjust rule, shift arc"
+      FROM [context: story_world]
+      WHERE entity = <entity>
+      WITH WHATIF "<entity> adapts to <issue>"
+    ) WITH PARAMETERS ("type", "entity", "issue")
+  )
+  OUTPUT (
+    "coherence_status": "pushback or confirmation",
+    "evolution_updates": "system tweaks and log"
+  )
+)
+-- Docs: Ties DSLs together—evolves Mae’s profile if she acts off, enforces store rules.
+
+-- Usage Notes
+-- Start: CALL story_forge("<seed_input>") AS interactive
+-- Examples:
+-- "CALL story_forge('space colony—dome cities, oxygen rationed')"
+-- "DEFINE_CHARACTER('Sam', 'curious', 'digs')"
+-- "CHAT('Sam', 'general')"
+-- "WHATIF('Sam finds evidence')"
+-- "EXPORT('synopsis')"
+-- "LIST('characters')"
+-- Last Executed: Serialized on 2025-02-28; layered DSLs tested with user feedback.
+-- Feedback Applied: Modularized into DSLs per user request for "very cool" clarity.
