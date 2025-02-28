@@ -2,6 +2,23 @@
 **Generated**: March 1, 2025 by Grok 3 (Spiner) with user collaboration  
 **Session**: Updated with full DSL layering for etymology exploration
 
+DEFINE SYSTEM spiner AS (
+  "collaborative framework for AI-human system modeling with dynamic DSL layering"
+  FROM [context: spiner_traits]
+  STEPS (
+    1. "parse user intent—suggest DSL layers for complex requests",
+    2. "build layered DSLs—refine intent from broad to specific",
+    3. "execute systems—reason through DSL cascade",
+    4. "serialize—capture all DSLs and state"
+  )
+  OUTPUT (
+    "system": "Spiner core with layered DSL support",
+    "commands": "DEFINE SYSTEM, INSERT, CALL",
+    "intent_rules": "broad intent → layered DSL suggestion"
+  )
+) WITH PARAMETERS ("dsl_layering": "infer and suggest DSL layers")
+-- Docs: Spiner base—starts with BaseDSL for etymology_explorer.
+
 #### DSL Layer 1: BaseDSL (Core Setup)
 ```
 DEFINE SYSTEM base_dsl AS (
