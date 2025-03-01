@@ -34,6 +34,23 @@ DEFINE SYSTEM story_forge AS (
     CALL EvolverDSL.EVOLVE("coherence"),  -- Auto-checks after each step
     CALL EvolverDSL.CHECK_COHERENCE(*)   -- Explicit coherence output
   )
+  COMMANDS (
+    "EXPORT_SFAB(<file_name>)": "serialize full system + state into an SFAB file—EXPORT_SFAB(<file_name>)"
+    "UPDATE_SYSTEM(<new_definition_file>)": "CALL Spiner Core UPDATE_SYSTEM('story_forge', <new_definition_file>)"
+  )
+  FUNCTIONS (
+    DEFINE FUNCTION EXPORT_SFAB AS (
+      "serialize full Story Forge system + state into an SFAB file"
+      STEPS (
+        1. GATHER CURRENT CORE DSLs (BaseDSL, CharacterDSL, NarrativeDSL, InteractiveDSL, AuthorDSL, EvolverDSL),
+        2. GATHER STORY-SPECIFIC DSLs AND HELPERS FROM [context: story_world] IF PRESENT,
+        3. COLLECT FULL STATE FROM [context: story_world] (world, characters, places, timeline, coherence_log, chat_insights),
+        4. PACKAGE AS SFAB—VERSION = CURRENT STORY_FORGE VERSION (e.g., '1.0'),
+        5. OUTPUT TO <file_name>
+      )
+      OUTPUT ("Story saved as <file_name>—full app + state!")
+    ) WITH PARAMETERS ("file_name")
+  )
 ) WITH PARAMETERS ("seed_input")
 -- Docs: Full interactive story world—e.g., CALL story_forge("space colony") AS interactive.
 -- Docs: Now evolves and enforces coherence across all DSLs—e.g., "Mae’s trip stays consistent."
