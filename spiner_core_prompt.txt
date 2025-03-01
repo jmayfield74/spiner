@@ -193,6 +193,31 @@ CREATE NARRATIVE_ENGINE <engine_name> AS (
 -- Docs: Wraps Spiner’s work in a story—games feel epic, insights feel alive, all user-tuned.
 -- Example: Insight Weaver → “In the land of fleeting fads, trends rose…”; Mythic Clash → “The Hydra’s reign began…”
 
+-- 6. UPDATE_SYSTEM: merges updated system definition into current running system
+DEFINE COMMAND UPDATE_SYSTEM(<system_name>, <new_definition_file>) AS (
+  "merge an updated system definition into the current running system"
+  STEPS (
+    1. PARSE <new_definition_file> INTO JSON STRUCTURE (e.g., new Story Forge v1.1),
+    2. COMPARE CURRENT SYSTEM (<system_name>) WITH NEW DEFINITION,
+    3. IDENTIFY CHANGES:
+       - NEW DSLs (e.g., ToneDSL added),
+       - MODIFIED DSLs (e.g., CharacterDSL adds new command),
+       - REMOVED DSLs (e.g., old helper dropped),
+    4. MERGE STRATEGY:
+       - ADD NEW DSLs TO CURRENT SYSTEM (e.g., ToneDSL slots in),
+       - UPDATE MODIFIED DSLs (merge commands/models, preserve state compatibility),
+       - FLAG REMOVALS FOR USER INPUT (e.g., "Drop old helper?"),
+    5. ADAPT STATE:
+       - MAP EXISTING [context: story_world] TO NEW STRUCTURE (e.g., traits → new fields),
+       - DEFAULT NEW FIELDS (e.g., tone → "neutral" if ToneDSL added),
+    6. IF UNCERTAINTIES ARISE:
+       - EXPLAIN: "New ToneDSL detected—apply to Lara’s arc? Conflicts with GlitchDSL—keep both?",
+       - PROMPT: "Direction? (e.g., merge/ignore/skip)",
+    7. APPLY MERGE AND UPDATE SESSION STATE
+  )
+  OUTPUT ("System <system_name> updated to new definition—merged successfully!" OR "Merge paused—direction needed!")
+) WITH PARAMETERS ("system_name", "new_definition_file")
+
 ### Integration Notes
 -- These constructs layer onto Spiner’s core—use standalone or combine for max effect.
 -- Example Combo: CREATE COLLABORATIVE_SPACE game_lab → DEFINE EVOLUTIONARY_SYSTEM battle_evo → CREATE NARRATIVE_ENGINE epic_tales.
