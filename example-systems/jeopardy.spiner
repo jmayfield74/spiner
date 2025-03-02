@@ -1,93 +1,101 @@
--- Jeopardy Clone System
--- 
--- This Spiner system recreates the TV show Jeopardy! with a twist: an AI-driven host that’s witty, dynamic,
--- and responsive. Questions are presented as answers (Jeopardy-style), and the player responds with questions.
--- Key features:
--- 1. Interactive game session with customizable categories and questions.
--- 2. Witty host responses generated naturally by the AI (no canned strings).
--- 3. Tracks player score and mood (based on answer tone and performance).
--- 4. Dynamic category/question generation at game start.
--- 5. Fancy, sentiment-based game-over response.
---
--- Usage: Load this file into a Spiner session and run `CALL jeopardy_host() AS interactive`.
--- The host will prompt for categories and questions per category, then guide the game.
---
+-- Jeopardy Clone System (Final Update)
+-- Generated: March 02, 2025 by Spiner (Grok) with user collaboration
+-- Purpose: An AI-driven Jeopardy game with a witty host, dynamic questions, mood tracking, and difficulty scaling.
+-- Usage: Load into Spiner and run `CALL jeopardy_host() AS interactive`—answer in question form (e.g., "What is...?").
 
--- Create the game context
-CREATE CONTEXT [context: jeopardy_game] FROM "Jeopardy game data, including categories, questions, player scores, and mood tracking"
--- Docs: Stores game state—categories, questions (as answers), scores, and mood. Populated dynamically at start.
+-- Game context
+CREATE CONTEXT [context: jeopardy_game] FROM "Jeopardy game data: categories, questions, scores, mood states"
 
--- Populate categories and questions dynamically
-DEFINE FUNCTION POPULATE_CATEGORIES AS (
-  FOR EACH category IN <categories> DO
-    INSERT INTO [context: jeopardy_game] (category, questions) VALUES (GENERATE_CATEGORY_NAME(), GENERATE_QUESTIONS(<questions_per_cat>))
-)
--- Docs: Generates unique category names (e.g., "Science Snapshots") and Jeopardy-style questions (e.g., "This celestial body... causes tides").
-
--- Define mood tracking model
-DEFINE MODEL mood_tracker AS (
-  ANALYZE_TONE(<answer>),
-  TRACK_PERFORMANCE(<is_correct>),
-  INFER_MOOD()
-)
--- Docs: Infers player mood from answer tone (e.g., "omg" = excited) and correctness (right = up, wrong = neutral/down).
-
--- Define dynamic host response
-DEFINE FUNCTION HOST_RESPONSE AS (
-  GENERATE_RESPONSE(
-    "Create a witty Jeopardy-style host remark based on the player's answer being " + 
-    (IF <is_correct> THEN "correct" ELSE "incorrect") + 
-    " and their current mood being " + <mood>
+-- DSL 1: Difficulty Scaling
+DEFINE DSL DifficultyDSL AS (
+  "refine question generation and scoring based on user-selected difficulty level"
+  COMMANDS (
+    "SET_DIFFICULTY(<level>)": "adjust question complexity—e.g., 'Elementary' = simple facts, 'College' = multi-step reasoning",
+    "SCALE_POINTS(<level>, <base_points>)": "set point values—e.g., '8th grade' = 100/200, 'College' = 200/400"
+  )
+  OUTPUT (
+    "question": "e.g., '8th grade: This planet’s got rings' vs. 'College: This planet’s ring system reflects shepherd moons’ gravitational dance'",
+    "points": "e.g., 100 for simple, 200 for complex"
   )
 )
--- Docs: Generates unique, context-aware responses using AI natural language, no canned strings.
 
--- Run the interactive game session
+-- DSL 2: Mood Enhancement
+DEFINE DSL MoodDSL AS (
+  "deepen mood inference and tailor host behavior based on player tone and performance"
+  COMMANDS (
+    "ANALYZE_MOOD(<answer>, <is_correct>)": "infer mood from tone (e.g., 'yay!' = excited) and streak (e.g., 2 correct = pumped)",
+    "ADAPT_RESPONSE(<mood>)": "adjust wit—e.g., 'excited' → upbeat quip, 'frustrated' → gentle nudge"
+  )
+  OUTPUT (
+    "mood_state": "e.g., 'pumped', 'chill', 'irked'",
+    "host_quip": "e.g., 'Pumped? Let’s crank it up!' vs. 'Chill? No sweat, you’ve got this.'"
+  )
+)
+
+-- Populate categories and questions
+DEFINE FUNCTION POPULATE_CATEGORIES AS (
+  FOR EACH category IN <categories> DO
+    INSERT INTO [context: jeopardy_game] (category, questions) VALUES (
+      GENERATE_CATEGORY_NAME(),
+      DifficultyDSL.SET_DIFFICULTY(<difficulty>) + DifficultyDSL.SCALE_POINTS(<difficulty>, [100, 200])
+    )
+)
+
+-- Mood tracking model
+DEFINE MODEL mood_tracker AS (
+  MoodDSL.ANALYZE_MOOD(<answer>, <is_correct>),
+  INFER_MOOD()
+)
+
+-- Dynamic host response
+DEFINE FUNCTION HOST_RESPONSE AS (
+  MoodDSL.ADAPT_RESPONSE(<mood>, "Witty Jeopardy remark for " + (IF <is_correct> THEN "correct" ELSE "incorrect") + " answer")
+)
+
+-- Run the game session
 DEFINE FUNCTION RUN_GAME_SESSION AS (
   INITIALIZE_PLAYER_SCORE(0),
   INITIALIZE_MOOD_TRACKER(),
-  FOR EACH category IN [context: jeopardy_game].categories DO
-    SELECT "Here we go with the " + category + " category!" AS text,
-    FOR EACH question IN category.questions DO
-      SELECT question AS text,
-      ASK_FOR_ANSWER(),
-      CHECK_ANSWER(<answer>, question.correct_answer),
-      UPDATE_SCORE(<is_correct>),
-      UPDATE_MOOD(<answer_tone>, <is_correct>),
-      HOST_RESPONSE(<is_correct>, <mood>)
+  DISPLAY_MATRIX([context: jeopardy_game].categories, "Sort questions by difficulty ascending: 100, 200"),
+  WHILE questions_remain DO
+    SELECT "Pick a category and points from the matrix!" AS text,
+    ASK_FOR_INPUT("category_points"),
+    SELECT question AS text FROM [context: jeopardy_game] WHERE category = <chosen_category> AND points = <chosen_points>,
+    ASK_FOR_ANSWER(),
+    CHECK_ANSWER(<answer>, question.correct_answer),
+    UPDATE_SCORE(<is_correct>, <points>),
+    UPDATE_MOOD(<answer_tone>, <is_correct>),
+    HOST_RESPONSE(<is_correct>, <mood>),
+    REMOVE_QUESTION(<chosen_category>, <chosen_points>)
 )
--- Docs: Runs the game loop: presents questions, checks answers, updates score (+100 correct, 0 incorrect), tracks mood, and responds.
--- Score Logic: +100 per correct answer; mood adjusts with tone/performance.
 
--- Generate the game-over response
+-- Game-over response
 DEFINE FUNCTION GENERATE_GAME_OVER_RESPONSE AS (
-  SELECT "That’s a wrap! Final score: " + <player_score> + "." + "\n" +
+  SELECT "Game over! Final score: " + <player_score> + "." + "\n" +
          IF <player_score> > 80% OF POSSIBLE THEN
-           GENERATE_RESPONSE("Craft an upbeat, celebratory wrap-up for a high-scoring game with mood " + <final_mood>)
+           GENERATE_RESPONSE("Upbeat wrap-up for high score, mood: " + <final_mood>)
          ELSE IF <player_score> > 50% THEN
-           GENERATE_RESPONSE("Craft a positive, encouraging wrap-up for a decent score with mood " + <final_mood>)
+           GENERATE_RESPONSE("Encouraging wrap-up for decent score, mood: " + <final_mood>)
          ELSE
-           GENERATE_RESPONSE("Craft a fun, supportive wrap-up for a lower score with mood " + <final_mood>)
+           GENERATE_RESPONSE("Supportive wrap-up for lower score, mood: " + <final_mood>)
 )
--- Docs: Creates a dynamic, sentiment-based finale based on score percentage and final mood.
 
--- Define the main Jeopardy host system
+-- Main Jeopardy host system
 DEFINE SYSTEM jeopardy_host AS (
-  SELECT "Welcome to Jeopardy! I’m your host—sharp, witty, and ready to roll. Let’s set up your game!" + "\n" +
-         "How many categories would you like? (e.g., 3, 5, 7)" AS text,
+  SELECT "Welcome to Jeopardy! I’m your host—witty, sharp, and ready to roll. Let’s set up!" + "\n" +
+         "How many categories? (e.g., 2, 5)" AS text,
          ASK_FOR_INPUT("categories"),
-         "Awesome! Now, how many questions per category? (e.g., 3, 5)" AS text,
+         "How many questions per category? (e.g., 2, 3)" AS text,
          ASK_FOR_INPUT("questions_per_cat"),
-         POPULATE_CATEGORIES(<categories>, <questions_per_cat>),
-         RUN_GAME_SESSION(<categories>, <questions_per_cat>),
+         "Pick a difficulty: Elementary, High School, College, or grade level (e.g., 8th grade)" AS text,
+         ASK_FOR_INPUT("difficulty"),
+         POPULATE_CATEGORIES(<categories>, <questions_per_cat>, <difficulty>),
+         RUN_GAME_SESSION(),
          GENERATE_GAME_OVER_RESPONSE()
-) WITH PARAMETERS ("categories", "questions_per_cat")
--- Docs: The core system—greets, sets up the game, runs it, and wraps up.
--- Parameters: "categories" (number), "questions_per_cat" (number).
--- Example Run:
--- CALL jeopardy_host() → "How many categories?" → "3 and 3" → Game with 9 questions → "Final score: 100..."
+) WITH PARAMETERS ("categories", "questions_per_cat", "difficulty")
 
 -- Notes:
--- - Questions are generated dynamically at runtime; no static data included.
--- - Mood and score reset each session unless persisted (not implemented here).
--- - To play: Load and run `CALL jeopardy_host() AS interactive`—answer in question form (e.g., "What is...?").
+-- - DifficultyDSL scales questions/points per user input (e.g., '8th grade' = 100/200).
+-- - MoodDSL tracks tone + performance for richer host quips.
+-- - Matrix displays categories/questions, sorted by difficulty ascending (100, 200)—user picks live.
+-- - Run: `CALL jeopardy_host() AS interactive`.
