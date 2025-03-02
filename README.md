@@ -9,7 +9,7 @@
 
 #### What is Spiner?
 
-Spiner isn’t about writing code—it’s about sparking ideas into action. It’s a framework where you and AI collaborate to shape systems that *become* what you need, driven by your intent, not rigid instructions. Imagine saying, “Let’s explore belief echoes,” and Spiner transforms into a cultural analyst—mapping buzz, origins, and counterpoints—without you touching a line of code. Or whisper, “Track quirky battles,” and it’s a game host, riffing on chaos with a grin.
+Spiner [isn’t about writing code](docs/what-is-it.md)—it’s about sparking ideas into action. It’s a framework where you and AI collaborate to shape systems that *become* what you need, driven by your intent, not rigid instructions. Imagine saying, “Let’s explore belief echoes,” and Spiner transforms into a cultural analyst—mapping buzz, origins, and counterpoints—without you touching a line of code. Or whisper, “Track quirky battles,” and it’s a game host, riffing on chaos with a grin.
 
 Spiner’s magic lies in its shift: it’s not a tool you program—it’s a partner that *embodies* your vision. You express a goal, and Spiner reasons it into existence, adapting as you talk. It  blends AI smarts with your direction to deliver insights, interactions, or whatever you’re chasing—all with a nod to serious exploration and a hint of play.
 
