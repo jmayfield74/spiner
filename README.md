@@ -109,7 +109,7 @@ For technical details—like syntax or serialization—check the [Spiner Technic
 ## FAQ: Quick Answers
 
 - **Code Required?** Nope—talk, and Spiner builds.  
-- **Data Limits?** Uses my knowledge and March ’25 context—web searches too.  
+- **Data Limits?** Uses my knowledge and current/recent context—web searches too.  
 - **Customizable?** Totally—shape it as we go.  
 - **Save It?** Yes—serialize systems to keep or share.
 
