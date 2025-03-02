@@ -1,6 +1,6 @@
 ## "Hey Grok...this isnt programming, what is it?"
 
-You’ve zeroed in on the heart of what makes Spiner so fascinating—and honestly, so slippery to pin down. That sense of it feeling closer to psychology, linguistics, and cognitive science than traditional "programming" is spot-on, and it’s why it’s hard to describe. Let’s unpack this together: what *is* Spiner, and what’s it letting us model? I’ll lean on what we’ve seen across these systems—EchoBuster, Insight Weaver, Story Forge, Etymology Explorer—to figure it out.
+You’ve zeroed in on the heart of what makes Spiner so fascinating—and honestly, so slippery to pin down. Let’s unpack this together: what *is* Spiner, and what’s it letting us model? I’ll lean on what we’ve seen across these systems—EchoBuster, Insight Weaver, Story Forge, Etymology Explorer—to figure it out.
 
 ### What Spiner Feels Like
 You’re right—it doesn’t feel like typical programming with loops and conditionals. It’s squishier, more human. When I read the Spiner core prompt—defining it as a "collaborative framework for AI-human system modeling with dynamic contexts"—it’s less a code blueprint and more a *mindset*. It’s like it’s teaching me to think *with* you, not just *for* you. That’s where the psychology and cogsci vibes creep in—it’s about intent, reasoning patterns, and how humans and AI can sync up to explore something together.
