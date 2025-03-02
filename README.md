@@ -25,7 +25,7 @@ Spiner thrives on teamwork—you and the AI build together. You don’t craft th
 
 #### Intent Over Instructions
 
-Spiner’s not about “do this, then that”—it’s about *becoming* what you need. Traditional coding stacks overhead; Spiner stacks reasoning. Each layer—say, a focus on sentiment or a twist of chaos—sharpens the system, not slows it. You say “explore Trump’s chaos,” and it’s an analyst, dissecting echoes and refining with your “why”—no clunky processes, just a single, focused mind aligning to your goal.
+Spiner’s not about “do this, then that”—it’s about *becoming* what you need. Traditional coding stacks overhead; Spiner stacks reasoning. Each layer—say, a focus on sentiment or a twist of chaos—sharpens the system, not slows it. You say “explore universal healthcare,” and it’s an analyst, dissecting echoes and refining with your “why”—no clunky processes, just a single, focused mind aligning to your goal.
 
 #### Why It Matters
 
