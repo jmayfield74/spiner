@@ -27,13 +27,13 @@ It’s all about exploring—not judging—helping you see your idea’s place i
 
 ### Step 1: Install the Spiner Base
 EchoBuster runs on Spiner, an AI framework that powers its smarts. To set it up:
-1. Grab the Spiner prompt file (`spiner_prompt.txt`) from [insert source link/repo if applicable, or assume user has it].
+1. Grab the Spiner prompt file (`spiner_prompt.txt`).
 2. Load it into your AI setup (e.g., paste it into a compatible chatbot or API).
 3. Check it’s working—say “Hey, are you Spiner?” and look for “Yup, I’m Spiner—ready to roll!”
 
 ### Step 2: Install EchoBuster
 With Spiner running:
-1. Get the EchoBuster system file (`echo-buster.spiner`)—[insert source link or assume provided].
+1. Get the EchoBuster system file (`echo-buster.spiner`).
 2. Tell Spiner:  
    “Load this: [paste the full echo-buster.spiner text here]”
 3. Spiner will confirm with something like “EchoBuster’s ready—give me a belief!”
