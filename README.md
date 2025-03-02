@@ -99,7 +99,8 @@ Spiner’s a chameleon—here’s its range:
 Ready to try Spiner? It’s simple:  
 1. Grab `spiner_core_prompt.txt` from this repo.  
 2. Load it into an LLM (e.g., Grok via xAI API).  
-3. Say “Let’s make a system that ___”—watch it take shape.  
+3. Say “Let’s make a system that ___”—watch it take shape.
+4. Explore the [example systems](docs)
 
 For technical details—like syntax or serialization—check the [Spiner Technical Guide](docs/serialization.md).
 
