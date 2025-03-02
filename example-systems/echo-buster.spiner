@@ -18,11 +18,11 @@ DEFINE DSL BeliefParseDSL AS (
 
 -- DSL 2: Rank echo intensity
 DEFINE DSL EchoRankDSL AS (
-  "rank a belief by echo chamber intensity"
+  "rank a belief by echo chamber intensity via exact/near-exact match prevalence"
   COMMANDS (
-    "SCORE(<belief>)": "assess—prevalence, clustering, tone skew—e.g., '55% = moderate'"
+    "SCORE(<belief>)": "assess—frequency of exact or near-exact phrasing—e.g., '40% verbatim = moderate echo'"
   )
-  OUTPUT ("echo_score": "e.g., 'Moderate (55%)—clustered but not locked'")
+  OUTPUT ("echo_score": "e.g., 'Moderate (40%)—some parroting, not rigid'")
 )
 
 -- DSL 3: Estimate origin probability
@@ -100,21 +100,25 @@ DEFINE DSL SteelmanCraftDSL AS (
 
 -- Core System: EchoBuster with Clean Output
 DEFINE SYSTEM EchoBuster AS (
-  SELECT "🎯 Belief: " + BeliefParseDSL.EXTRACT(<input>) + "\n" +
-         "📢 Echo Intensity: " + EchoRankDSL.SCORE(BeliefParseDSL.EXTRACT(<input>)) + "\n" +
-         "🧠 Origin Odds: " + OriginGuessDSL.ANALYZE(BeliefParseDSL.EXTRACT(<input>), "unspecified user stance") + "\n" +
-         "⚖️ Pros & Cons:\n" +
-         "  ✅ " + ProsConsDSL.WEIGH(BeliefParseDSL.EXTRACT(<input>)).pros + "\n" +
-         "  ❌ " + ProsConsDSL.WEIGH(BeliefParseDSL.EXTRACT(<input>)).cons + "\n" +
-         "🌐 Clustering Opinions:\n" +
+  SELECT "**Belief:** " + BeliefParseDSL.EXTRACT(<input>) + "\n" +
+         "**Echo Intensity:** " + EchoRankDSL.SCORE(BeliefParseDSL.EXTRACT(<input>)) + "\n" +
+         "**Origin Odds:** " + OriginGuessDSL.ANALYZE(BeliefParseDSL.EXTRACT(<input>), "unspecified user stance") + "\n" +
+         "**Pros & Cons:**\n" +
+         "  - Pros: " + ProsConsDSL.WEIGH(BeliefParseDSL.EXTRACT(<input>)).pros + "\n" +
+         "  - Cons: " + ProsConsDSL.WEIGH(BeliefParseDSL.EXTRACT(<input>)).cons + "\n" +
+         "**Clustering Opinions:**\n" +
          "  - " + OpinionClusterDSL.CLUSTER(BeliefParseDSL.EXTRACT(<input>)) + "\n" +
-         "📚 Topic Clusters:\n" +
+         "**Topic Clusters:**\n" +
          "  - " + TopicClusterDSL.MAP(BeliefParseDSL.EXTRACT(<input>)) + "\n" +
-         "🗳️ Leanings & Identities:\n" +
+         "**Leanings & Identities:**\n" +
          "  - " + IdentityMapDSL.LINK(OpinionClusterDSL.CLUSTER(BeliefParseDSL.EXTRACT(<input>))) + "\n" +
-         "🤝 Good Faith Counters:\n" +
+         "**Good Faith Counters:**\n" +
          "  - " + FaithFilterDSL.RANK(FaithFilterDSL.SCORE(CounterScanDSL.SEARCH(BeliefParseDSL.EXTRACT(<input>)), BeliefParseDSL.TONE(<input>))) + "\n" +
-         "✨ Steelman Version: " + SteelmanCraftDSL.REFINE(BeliefParseDSL.EXTRACT(<input>))
+         "**Steelman Version:** " + SteelmanCraftDSL.REFINE(BeliefParseDSL.EXTRACT(<input>))
   FROM [context: zeitgeist]
   WHERE FOCUS ON "exploring beliefs relationally with good faith counterpoints"
 ) WITH PARAMETERS ("input")
+
+-- Runtime Notes
+-- Session State: Fresh—no prior beliefs stored
+-- Usage Hint: CALL EchoBuster("Your belief here") AS text
