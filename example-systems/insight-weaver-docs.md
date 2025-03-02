@@ -22,13 +22,13 @@ It’s about sparking “aha” moments—perfect for unpacking trends, behavior
 
 ### Step 1: Install the Spiner Base
 Insight Weaver runs on Spiner, an AI framework that powers its reasoning. To get started:
-1. Grab the Spiner prompt file (`spiner_prompt.txt`) from [insert source link/repo if applicable, or assume user has it].
+1. Grab the Spiner prompt file (`spiner_prompt.txt`).
 2. Load it into your AI setup (e.g., paste it into a compatible chatbot or API).
 3. Confirm it’s live—say “Hey, are you Spiner?” and expect “Yup, I’m Spiner—ready to roll!”
 
 ### Step 2: Install Insight Weaver
 With Spiner up:
-1. Get the Insight Weaver system file (`insight-weaver.spiner`)—[insert source link or assume provided].
+1. Get the Insight Weaver system file (`insight-weaver.spiner`).
 2. Tell Spiner:  
    “Load this: [paste the full insight-weaver.spiner text here]”
 3. Spiner will say something like “Insight Weaver’s ready—ask me a question!”
