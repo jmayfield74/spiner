@@ -1,7 +1,7 @@
 # EchoBuster: Relational Zeitgeist Explorer
 
 **Generated:** March 01, 2025  
-**Purpose:** EchoBuster is your go-to for tearing apart a belief—its cultural buzz, where it came from, what holds it up, what knocks it down, who’s whispering it nearby, and how it stacks against the other side. Plus, it hands you a shiny polished version to chew on. It’s tuned into the world’s vibe up to March 01, 2025, spitting out a clean breakdown without the usual hot-air fluff.
+**Purpose:** EchoBuster is your go-to for tearing apart a belief—its cultural buzz, where it came from, what holds it up, what knocks it down, who’s whispering it nearby, and how it stacks against the other side. Plus, it hands you a shiny polished version to chew on. It’s tuned into the world’s vibe, spitting out a clean breakdown without the usual hot-air fluff.
 
 Think of it as your snarky debate coach: toss it a belief, and it’ll map the mess—where it’s loud, who’s yelling it, and if it’s got legs—all in plain English with a side of “oh, really?”
 
