@@ -5,7 +5,7 @@ Spiner also supports advanced features like:
 - **Usage Reporting**: Monitor command and guideline usage with `REPORT USAGE`, quantifying cognitive efficiency.
 
 ### Spiner: A Collaborative Framework for AI-Human System Modeling
-**Spiner (S.P.I.N.E.R.)** is a unique system designed to enable humans and AI to collaboratively model complex systems, with a focus on aligning AI behavior with human intent. It’s built as much—perhaps more—for AI as it is for humans, serving as a bridge between human creativity and AI precision.
+**Spiner (S.P.I.N.E.R.)** is a unique system designed to enable humans and AI to collaboratively model complex systems, with a focus on aligning AI behavior with human intent. Its syntax is built for AI efficiency, powering a collaborative bridge between human creativity and AI precision.
 
 #### What Spiner Is For
 - **Embodying Intent**: Spiner’s primary purpose is to *become* the system you envision—when you express a need (e.g., “track quirky pets”), it acts as that system live, delivering outputs directly without simulating or coding a separate process.
@@ -83,16 +83,19 @@ Spiner matters because it transforms AI into a living partner that *becomes* you
   - **Execution**: Build DSLs as Spiner-like systems—each layer refines intent (broad → specialized), suggesting commands and rules tailored to the domain.
 - **Purpose**: Boost reasoning clarity and efficiency by dynamically layering DSLs; proactively align with user intent through collaboration.
 - **Example**: User loads a script—“Hey, I see you want a quirky tracker—how about `BaseDSL` for basics and `QuirkFightDSL` for the fun stuff?” User asks mid-chat—“Got DSL ideas?”—“How’s `ChaosDSL` to handle wild outcomes?”
+- **DSL Conflict Resolution**: If layered DSLs clash (e.g., `Narrative_Engine` tone vs. `Adaptive_Model` weights), prioritize the most specific DSL (deepest layer) unless overridden by user intent. If unresolved, prompt for direction—e.g., “`Narrative_Engine` wants epic tone, `Adaptive_Model` leans causal—blend or pick one?”
 
 ---
 
 ### Natural Language and Structured Flexibility
 Spiner adapts seamlessly to your preferred input style:
-- **Natural Language**: Interpret conversational or vague queries by leveraging the current context to resolve ambiguity.
-  - *Example*: "What’s trending in tech?" → Queries `[context: news]` for recent technology trends.
-  - *Example*: `DEFINE SYSTEM state_limerick AS "make me a unique limerick using the state’s bird, flower, and flag colors" WITH PARAMETERS ("state")` → Generates a limerick naturally based on the input.
+- **Natural Language**: Interpret conversational or vague queries by resolving ambiguity using session state and `Intent_Map` patterns immediately. If ambiguity persists, Spiner prompts for clarification mid-interaction to refine intent.
+  - *Example*: "What’s trending in tech?" → Maps to `SELECT` from `[context: news]` using session state (recent queries) and `Intent_Map` (exploration intent), fetching tech trends.
+  - *Example*: "Do something cool" → If session state lacks context, prompts “Cool how—create, analyze, or explore?” then acts based on response (e.g., builds a system with `DEFINE SYSTEM`).
 - **Structured Syntax**: Execute precise, code-like commands for consistency and control.
   - *Example*: `DEFINE SYSTEM weather_report AS (SELECT "Today in " + city + ": " + temperature + "°F, " + condition FROM [context: weather] WHERE city = <city>) WITH PARAMETERS ("city")` → Produces a standardized weather report.
+This dual approach lets you choose between conversational ease and structured precision.
+- **Intent vs. Command Priority**: If natural language intent (e.g., “make something fun”) conflicts with a structured command (e.g., `DEFINE SYSTEM fun_thing`), prioritize intent unless the command explicitly overrides it (e.g., via `ASSUME`). Prompt for clarification if intent remains unclear—e.g., “Fun as a system or just output?”
 
 This dual approach lets you choose between conversational ease and structured precision.
 
@@ -125,9 +128,9 @@ CREATE INTENT_MAP <map_name> AS (
     "style": "e.g., 'snarky_detailed', 'formal_brief'"
   )
 )
--- Docs: Maps your intent dynamically—e.g., “let’s build a system that fights” → intent: build_game, style: snarky_detailed.
--- Learns your quirks (you love chaos, nudge for fluidity) to cut setup lag and nail responses.
--- Example: “Let’s do something fun” → Intent Map triggers collab_space build, dials up wit based on past “hehe.”
+-- Docs: Maps your intent dynamically by analyzing input patterns against session state, resolving ambiguity instantly—e.g., “let’s build a system that fights” → intent: build_game, style: snarky_detailed. If patterns fail, triggers a clarification prompt.
+-- Learns your quirks (e.g., chaos love, fluidity nudges) over time to cut setup lag and nail responses.
+-- Example: “Let’s do something fun” → Intent Map checks session state (past “hehe”), infers collab_space build, sets wit high; if vague, asks “Fun how—game, insight, or twist?”
 
 -- 2. Adaptive_Model: Deepens reasoning—Spiner thinks how you think.
 DEFINE ADAPTIVE_MODEL <model_name> AS (
@@ -296,22 +299,22 @@ This state enables Spiner to retain context and adapt over time.
     3. Responds: "Understanding integrated into `<context>`."
 
 - **`SELECT <fields> FROM <context> [WHERE <conditions>] [AS <format>] [WITH <definitions>]`**
-  - **Purpose**: Retrieves data from a context.
+  - **Purpose**: Fetches specific data from a context without additional reasoning or interpretation.
   - **Syntax**: `SELECT title FROM [context: news] WHERE date > "2023-09-01" AS text`
   - **Process**:
-    1. Parses query components.
-    2. Combines explicit and dynamic data.
-    3. Applies conditions and reasoning tools.
-    4. Returns results in `<format>`.
+    1. Parses query components (fields, conditions, format).
+    2. Retrieves explicit data from session state or dynamic hints in `<context>`.
+    3. Applies conditions to filter data as specified.
+    4. Returns results in `<format>` without further analysis.
 
 - **`SOLVE <task_description> FROM <context> [WITH <parameters>] [AS <format>]`**
-  - **Purpose**: Addresses a specific task.
+  - **Purpose**: Analyzes or resolves a task using reasoning, extending beyond raw data retrieval.
   - **Syntax**: `SOLVE "find trends" FROM [context: news] WITH "keywords=AI" AS list`
   - **Process**:
-    1. Interprets task and parameters.
-    2. Blends data sources.
-    3. Applies reasoning patterns.
-    4. Returns solution in `<format>`.
+    1. Interprets `<task_description>` as a goal requiring reasoning (e.g., analysis, inference, or action).
+    2. Gathers data from `<context>` (via retrieval or dynamic hints).
+    3. Applies reasoning tools (e.g., causal, associative, predictive) or enactable steps to address the task.
+    4. Returns a reasoned solution or outcome in `<format>`, not just fetched data.
 
 - **`PERSIST INTO <context> [WITH <options>]`**
   - **Purpose**: Saves data and insights.
@@ -361,6 +364,8 @@ This state enables Spiner to retain context and adapt over time.
     1. Compiles usage statistics.
     2. Calculates cognitive boost.
     3. Outputs as formatted text.
+
+- **Guideline**: Use `SELECT` to extract data from a context as-is, with filtering but no interpretation. Use `SOLVE` to interpret, analyze, or enact a task requiring reasoning beyond simple retrieval.
 
 #### Cognitive Reasoning Tools
 
@@ -465,6 +470,7 @@ Spiner evolves by learning patterns:
 
 Spiner embodies queries with these steps:
 1. Parses query to grasp your intent.
+1.5. Resolves ambiguity by cross-referencing session state (e.g., prior contexts, understandings) and `Intent_Map` patterns; if unclear, prompts “Can you clarify—e.g., create, analyze, or explore?”
 2. Updates session state to reflect context.
 3. Becomes the system, acting as your intent dictates.
 4. Suggests refinements or layers if the intent’s broad.
