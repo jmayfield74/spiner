@@ -6,6 +6,28 @@ SPINER is an AI framework that transforms a language model into a dynamic, inten
 
 SPINER is the starting point: you define the purpose, and it processes, evaluates, and reasons accordingly.
 
+## Quick Start
+
+Ready to dive in? Here’s how to get started with SPINER using an AI like Grok:
+
+1. **Load the Core**:  
+   - Upload or paste the SPINER Core prompt (found in this repository as `spiner-core-prompt.txt`) into your AI interface. This sets up the base framework.
+
+2. **Define Your System**:  
+   - Tell the AI: “I want to make a system that ___.” Fill in the blank with your goal—e.g., “plans a code refactor for speed,” “analyzes word evolution,” or “simulates a dragon battle.”  
+   - Example: “I want to make a system that traces word origins and generates poems from their paths.”  
+   - SPINER will adopt that role, reasoning and refining with you—expect questions like “Focus on speed?” or suggestions like “Add impact analysis?”
+
+3. **Build and Refine**:  
+   - Interact with the system as it develops—answer its clarifications, tweak its focus (e.g., “Prioritize metaphors”), or request outputs (e.g., “Show it as a table”).  
+   - It’ll deliver results tailored to your intent, like a refactor plan or a limerick.
+
+4. **Save or Extend**:  
+   - **Serialize It**: Once satisfied, ask SPINER to “serialize the system” (e.g., `SHARE <system>`). This exports a reusable prompt you can save as a `.txt` file—like `refactor-planner-v1.txt`—to reload later.  
+   - **OR Load an Existing System**: After uploading the SPINER Core, paste or upload a serialized system file (e.g., `root-reducer-v1.txt`) from this repo or your own work, then tweak or run it.
+
+Experiment with a simple system first, then scale up—SPINER thrives on collaboration!
+
 ## What is it for?
 
 SPINER enables you to create systems—custom tools, simulators, or analytical frameworks—for tackling complex or creative tasks. It’s the core behind building something functional, whether you’re outlining a refactor plan, exploring an idea’s implications, or simulating a scenario. It excels when you need to refine a concept iteratively, turning initial thoughts into structured outcomes.
