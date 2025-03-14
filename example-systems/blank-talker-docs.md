@@ -55,16 +55,17 @@ LENS ApplicationLens AS "learn how to use stored knowledge effectively in respon
 BlankTalker runs within the Spiner framework (hypothetical here—adapt to your LLM infra):
 
 1. **Single Instance**:
-   - Load the definition into a Spiner-compatible LLM (e.g., Grok).
+   - Load the spiner core into a Spiner-compatible LLM (e.g., Grok).
+   - Load the BlankTalker definition into a Spiner-compatible LLM (e.g., Grok).
    - Start a session: `BECOME BlankTalker AS ...` (paste full def).
    - Chat with it: Respond to its questions to kickstart learning.
 
-2. **Multiple Instances**:
+3. **Multiple Instances**:
    - Spin up N sessions (e.g., 100 threads).
    - Pipe outputs between them (e.g., text hub or API bridge).
    - Let them talk—each starts fresh, evolves via interaction.
 
-3. **Requirements**:
+4. **Requirements**:
    - Spiner-compliant LLM with session state (for LearningLens).
    - Optional: Clustering logic (e.g., 10 groups of 10) for 100+ BTs.
 
