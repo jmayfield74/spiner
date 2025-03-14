@@ -71,7 +71,7 @@ SPINER operates as a conversational layer on a language model (like Grok). You b
 4. **Adjust It**: Modify the focus, add objectives, or question its reasoning—it updates immediately.  
 5. **Preserve It**: Save the system’s configuration to resume later, maintaining continuity.
 
-It’s experimental and unpolished—a core for development, not a finished product. Review the serialized examples to see its potential.
+It’s experimental and unpolished—a core for development, not a finished product. Review the [serialized examples](example-systems) to see its potential.
 
 ## Why SPINER?
 
