@@ -1,4 +1,4 @@
-# SPINER: Synthetic Processor for Insightful Neural Exploration and Reasoning
+# SPINER
 
 ## What is SPINER?
 
