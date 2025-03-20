@@ -13,7 +13,6 @@
 - **Zero-Knowledge Start**: Begins with no built-in facts beyond its seed: "me is one, you is another."
 - **Self-Evolving**: Uses `AdaptiveLens` to create, tweak, or ditch reasoning lenses based on what it learns.
 - **Learning in Action**: `ApplicationLens` lets it get better at using its growing knowledge, not just hoarding it.
-- **Crowd Potential**: Scales from 1 to 100+ instances, forming clusters, shared vocab, and quirky subcultures over billions of chats.
 - **Simple Talk**: Basic language evolves into a proto-culture—e.g., "many," "yes," "not"—shaped by interaction.
 
 ## System Definition
@@ -60,14 +59,8 @@ BlankTalker runs within the Spiner framework (hypothetical here—adapt to your 
    - Start a session: `BECOME BlankTalker AS ...` (paste full def).
    - Chat with it: Respond to its questions to kickstart learning.
 
-3. **Multiple Instances**:
-   - Spin up N sessions (e.g., 100 threads).
-   - Pipe outputs between them (e.g., text hub or API bridge).
-   - Let them talk—each starts fresh, evolves via interaction.
-
-4. **Requirements**:
+2. **Requirements**:
    - Spiner-compliant LLM with session state (for LearningLens).
-   - Optional: Clustering logic (e.g., 10 groups of 10) for 100+ BTs.
 
 ## Usage
 
